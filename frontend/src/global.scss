@@ -9,6 +9,271 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+
+
+
+ @import "./theme/variables.scss";
+
+ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+   background-color: var(--color-accent1);
+   opacity: 1;
+ }
+ 
+ span.swiper-pagination-bullet {
+   background-color: var(--color-light);
+   opacity: 1;
+ }
+ 
+ html,
+ body {
+   margin: 0px;
+   padding: 0px;
+   width: 100%;
+   overflow-x: hidden;
+    background: radial-gradient(at top left, var(--color-gradient-one) 0%, var(--color-gradient-two) 100%);
+   --ion-background-color: radial-gradient(at top left, var(--color-gradient-one) 0%, var(--color-gradient-two) 100%);
+ }
+ 
+ // ion-content{
+ //   --background: url("./assets/imgs/backgrounds/bg.jpg") no-repeat center center / cover;
+ //   --background-position: center;
+ //   --background-repeat: no-repeat;
+ //   --background-size: cover;
+ // }
+ 
+ 
+ a,
+ button {
+   margin: 0px;
+   padding: 0px;
+   font-family: white;
+   font-size: var(--fontsize-std);
+   background-color: transparent;
+   text-decoration: none;
+   border: none;
+   outline: none;
+ }
+ 
+ h1,
+ h2,
+ h3,
+ h4 {
+   margin: 0px;
+   padding: 0px;
+   font-family: var(--std-font-light);
+ }
+ 
+ h1 {
+   font-size: var(--fontsize-h1);
+ }
+ 
+ h2 {
+   font-size: var(--fontsize-h2);
+ }
+ 
+ h3 {
+   font-size: var(--fontsize-h3);
+ }
+ 
+ h4 {
+   font-size: var(--fontsize-h4);
+ }
+ 
+ span {
+   font-family: var(--std-font);
+   font-size: var(--fontsize-std);
+   color: black;
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+ 
+ ul {
+   margin: 0px;
+   padding: 0px;
+   list-style-type: none;
+ }
+ 
+ .text-input,
+ textarea {
+   width: 100%;
+   border-radius: var(--std-border-rad-small);
+   background-color: white;
+   color: black;
+   margin-bottom: var(--margin-small);
+ 
+   border-style: none;
+   outline: none;
+   box-shadow: 0 10px 10px rgba(black, 0.3);
+   padding: var(--padding-smallest);
+   min-height: var(--btn-submit);
+ }
+ 
+ .submit-input {
+   width: 100%;
+   background-color: var(--color-accent1);
+   color: white;
+   margin-bottom: var(--margin-small);
+   border-radius: var(--std-border-rad-small);
+ 
+   border-style: none;
+   outline: none;
+   box-shadow: 0 10px 10px rgba(black, 0.3);
+   padding: var(--padding-smallest);
+   min-height: var(--btn-submit);
+   transform: scale(1);
+   transition: 0.3s transform;
+ }
+ 
+ .submit-input:hover {
+   transform: scale(1.05);
+ }
+ 
+ form,
+ textarea {
+ 
+   font-size: var(--fontsize-std);
+   font-family: var(--std-font-light);
+ }
+ 
+ #content,
+ ion-content {
+   min-height: 100%;
+   width: 100%;
+ }
+ 
+ .title-first {
+   font-family: var(--std-font-extra-bold);
+   font-weight: 900;
+   font-size: var(--fontsize-h1);
+   text-align: center;
+   color: white;
+ }
+ 
+ .title-second {
+   font-size: var(--fontsize-std);
+   text-align: center;
+   text-transform: uppercase;
+   color: white;
+ }
+ 
+ .link {
+   font-size: var(--fontsize-std);
+   color: var(--color-accent1);
+   margin-left: var(--margin-smaller);
+   transition: color 0.5s;
+ }
+ 
+ .link:hover {
+   color: var(--color-accent1-tint);
+ }
+ 
+ .round-button {
+   margin-top: var(--margin);
+   background-color: var(--color-accent1);
+   padding: var(--padding-small);
+   border-radius: var(--navbar-height);
+   box-shadow: 0px 10px 20px rgba(black, 0.5);
+   color: white;
+   animation: 3s wobbleSmooth infinite;
+ }
+ 
+ .round-button:hover {
+   animation: 3s wobbleSmooth;
+ }
+ 
+ //svgs--------------------------------------
+ .spacer1 {
+   aspect-ratio: 900/450;
+   width: 100%;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: contain;
+ }
+ 
+ .layer1 {
+   //background-image: url("./assets/svgs/waves-1.svg");
+ }
+ 
+ //animations--------------------------------
+ 
+ //flex----------------------------
+ .ac {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ @keyframes wobbleSmooth {
+ 
+   0%,
+   50% {
+     transform: translateX(0px);
+   }
+ 
+   57% {
+     transform: translateX(-6px) rotate(-1deg);
+   }
+ 
+   64% {
+     transform: translateX(5px) rotate(0.75deg);
+   }
+ 
+   71% {
+     transform: translateX(-3px) rotate(-0.75deg);
+   }
+ 
+   78% {
+     transform: translateX(2px) rotate(0.5deg);
+   }
+ 
+   87% {
+     transform: translateX(-1px) rotate(-0.25deg);
+   }
+ 
+   100% {
+     transform: translateX(0px);
+   }
+ }
+ 
+ @keyframes wobbleSmoothNoDelay {
+   0% {
+     transform: translateX(0px);
+   }
+ 
+   15% {
+     transform: translateX(-6px) rotate(-1deg);
+   }
+ 
+   30% {
+     transform: translateX(5px) rotate(0.75deg);
+   }
+ 
+   45% {
+     transform: translateX(-3px) rotate(-0.75deg);
+   }
+ 
+   60% {
+     transform: translateX(2px) rotate(0.5deg);
+   }
+ 
+   75% {
+     transform: translateX(-1px) rotate(-0.25deg);
+   }
+ 
+   100% {
+     transform: translateX(0px);
+   }
+ }
+
+
+
+
+
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 

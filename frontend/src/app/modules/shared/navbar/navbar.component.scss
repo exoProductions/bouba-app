@@ -1,0 +1,64 @@
+@import "../../../../theme/variables.scss";
+
+#main-container {
+  position: fixed;
+  bottom: var(--margin-small);
+  left: 0px;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#nav-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: var(--navbar-height);
+  border-radius: var(--navbar-height);
+  background-color: var(--color-accent1);
+  //background: radial-gradient(at top left, var(--color-gradient-one) 0%, var(--color-gradient-two) 100%);
+  //box-shadow: 0px 0px 50px rgba(#e379f7, 0.3);
+  //box-shadow: 0 0 40px 50px rgba(#f0f,0.07), 
+
+   
+}
+
+.item button {
+  height: var(--navbar-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--padding-small);
+  color: white;
+  transform: scale(1);
+  transition: 0.5s transform;
+}
+.item button h1{
+    font-size: var(--fontsize-h2);
+}
+.item.active button {
+  transform: scale(1.4);
+}
+
+
+.item:first-child button {
+  padding-left: var(--padding);
+}
+
+.item:last-child button {
+  padding-right: var(--padding);
+}
+
+#bg-fade {
+  width: 100%;
+  height: calc(var(--navbar-height) * 3);
+  background: linear-gradient(0deg, black 10%, transparent 100%);
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 0;
+}

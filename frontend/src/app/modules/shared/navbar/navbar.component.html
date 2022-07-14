@@ -1,3 +1,14 @@
-<p>
-  navbar works!
-</p>
+<div id="bg-fade" *ngIf="showFade() && showNavbar()"></div>
+<div id="main-container" *ngIf="showNavbar()">
+  <ul id="nav-list">
+    <ng-container *ngFor="let icon of icons; let i = index">
+      <li [ngClass]="getCurrentPageInd()==i ? 'item active' : 'item' ">
+        <button (click)="navigate(i)">
+          <h1>
+            <fa-icon [icon]="icon"></fa-icon>
+          </h1>
+        </button>
+      </li>
+    </ng-container>
+  </ul>
+</div> 

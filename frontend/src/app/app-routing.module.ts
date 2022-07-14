@@ -16,6 +16,18 @@ const routes: Routes = [
     path: 'First-time',
     loadChildren: () => import('./pages/first-time/first-time.module').then(m => m.FirstTimePageModule)
   },
+  {
+    path: 'Chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'News',
+    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule)
+  },
+  {
+    path: 'Settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
 
 ];
 

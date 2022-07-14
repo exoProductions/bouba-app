@@ -3,6 +3,66 @@
 
 /** Ionic CSS Variables **/
 :root {
+  --max-w-1:400px;
+  --max-w-2:720px;
+  --max-w-3:1080px;
+  
+
+  //spacing--------------------------
+  --margin-large: 60px;
+  --padding-large: var(--margin-large);
+  --margin: 30px;
+  --padding: var(--margin);
+  --margin-small: 15px;
+  --padding-small: var(--margin-small);
+  --margin-smaller: 8px;
+  --padding-smaller: var(--margin-smaller);
+  --margin-smallest: 4px;
+  --padding-smallest: var(--margin-smallest);
+  --std-border-rad: 25px;
+  --std-border-rad-small: 3px;
+  --navbar-height: 50px;
+
+  //sizing---------------------------
+  --btn-large: 80px;
+  --btn-medium: 50px;
+  --btn-small: 30px;
+  --btn-submit:40px;
+  //fonts--------------
+  --fontsize-std: 16px;
+  --fontsize-title-large: 100px;
+  --fontsize-title-extra-large: 140px;
+  --fontsize-title: 50px;
+  --fontsize-subtitle: 40px;
+  --fontsize-h1: 26px;
+  --fontsize-h2: 20px;
+  --fontsize-h3: 14px;
+  --fontsize-h4: 8px;
+  //fonts----------------------------------
+  --std-font-light: 'Montserrat', sans-serif;
+  --std-font: 'Nunito Sans', sans-serif;
+  --std-font-extra-bold: 'Arial', Sans-serif;
+  //fonts----------------------------------
+
+  //colors---------------------------
+  --color-navbar: white;
+  --color-bg-light: #1c1f29;
+  --color-bg-dark: #2a294e;
+  --color-accent1:#c50a0a;
+  --color-accent2:rgb(0, 183, 255);
+  --color-dark:#555;
+  --color-light:#aaa;
+  --color-lighter:#bbb;
+  --color-lightest:rgb(204, 204, 204);
+  --color-gradient-one:#2f3036;
+  --color-gradient-two:#161519;
+
+  --std-box-shadow: 0 0 20px 5px rgba(#e379f7,0.2),  
+  0 0 40px 50px rgba(#f0f,0.15), 
+  0 0 70px 70px rgba(#0ff,0.05); 
+
+
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

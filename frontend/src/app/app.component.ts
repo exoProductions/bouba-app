@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InitService } from './services/init.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private initService:InitService) {}
+
+  getHomeIsLoaded():boolean{
+    return this.initService.homeIsLoaded;
+  }
+
 }
