@@ -1,3 +1,32 @@
 <ion-content>
-welcome
+  <swiper [config]="config">
+    <ng-template swiperSlide>
+      <div class="slider-page one">
+        <h1 class="title-first">Welcome...</h1>
+        <h1 class="title-second">...To Meetpoint - your tool to turn boring train rides into exciting adventures.
+        </h1>
+      </div>
+    </ng-template>
+  
+    <ng-template swiperSlide>
+      <div class="slider-page two">
+        <h1 class="title-first">Open yourself </h1>
+        <h1 class="title-second">You always wanted to talk to the interesting looking person next to you but were to
+          anxious? By using our app you reach your goal by pressing just one button!
+        </h1>
+      </div>
+    </ng-template>
+  
+    <ng-template swiperSlide>
+      <div class="slider-page three" >
+        <h1 class="title-first">Become part of it</h1>
+        <h1 class="title-second">Join and help the comunity grow. The more people, the the better the experience!
+        </h1>
+        <button class="round-button" (click)="start()">
+          <h2>Start your jurney</h2>
+        </button>
+      </div>
+    </ng-template>
+  
+  </swiper>
 </ion-content>

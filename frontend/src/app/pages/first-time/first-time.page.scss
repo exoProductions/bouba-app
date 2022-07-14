@@ -1,0 +1,69 @@
+@import "../../../theme/variables.scss";
+
+.slider-page{
+    height: 100vh;
+    width: 100vw;
+    background-color: blue;
+}
+  
+//one----------------------------------------
+.slider-page.one{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    //background-image: url("../../../../assets/imgs/tutorial/slideview-1.png"),radial-gradient(at right, #0aa093 0%, #022231 100%);
+    padding: var(--padding);
+}
+.slider-page.one .title-first{
+    margin-top: var(--margin);
+    text-align: left;
+    margin-bottom: var(--margin-small);
+}
+.slider-page.one .title-second{
+   text-align: left;
+   font-size: var(--fontsize-std);
+    text-transform: none;
+}
+
+//two----------------------------------------
+.slider-page.two{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    //background-image: url("../../../../assets/imgs/tutorial/slideview-2.png"),radial-gradient(at right, #138fa5 0%, #020f31 100%);
+    padding: var(--padding);
+}
+.slider-page.two .title-first{
+    margin-top: var(--margin);
+    text-align: right;
+    margin-bottom: var(--margin-small);
+}
+.slider-page.two .title-second{
+   text-align: right;
+   font-size: var(--fontsize-std);
+    text-transform: none;
+}
+
+//three----------------------------------------
+.slider-page.three{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+   // background-image: url("../../../../assets/imgs/tutorial/slideview-3.png"),radial-gradient(at right, #8d13a5 0%, #310229 100%);
+    padding: var(--padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.slider-page.three .title-first{
+    margin-top: var(--margin);
+    text-align: center;
+    margin-bottom: var(--margin-small);
+}
+.slider-page.three .title-second{
+   text-align: center;
+   font-size: var(--fontsize-std);
+    text-transform: none;
+}
+
+

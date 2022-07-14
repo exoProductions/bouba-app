@@ -20,6 +20,10 @@ export class InitService {
   homeIsLoaded: boolean = true; //has to be false
   constructor(private storageService: StorageService, private apiService: ApiService,private router: Router) {
     this.initHome();
+    setTimeout(()=>{
+      //this.storageService.addData(0, "bla", "bli") //has to be false
+      //this.storageService.removeItem(0,"bla");
+    },1000);    
    }
 
   initHome(): void {
@@ -46,6 +50,11 @@ export class InitService {
       this.userdata=userdata;
       this.homeIsLoaded = true;
     });
+  }
+
+  
+  setUserdataLocal() {
+    //this.storageService.addData(0, "bla", "bli") //has to be false
   }
 
 }

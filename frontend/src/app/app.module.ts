@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import * as cordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage';
+import { HomePageModule } from './pages/home/home.module';
+import { NewsPageModule } from './pages/news/news.module';
+import { SettingsPageModule } from './pages/settings/settings.module';
+import { ChatPageModule } from './pages/chat/chat.module';
+import { FirstTimePageModule } from './pages/first-time/first-time.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -25,6 +30,11 @@ import { Drivers } from '@ionic/storage';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    HomePageModule,
+    NewsPageModule,
+    SettingsPageModule,
+    ChatPageModule,
+    FirstTimePageModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
