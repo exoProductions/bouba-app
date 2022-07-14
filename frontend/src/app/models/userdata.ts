@@ -3,4 +3,5 @@ export class Userdata {
     password:string;
     description:string;
     preferedPeers:string;
+    isMentee:boolean;
 }

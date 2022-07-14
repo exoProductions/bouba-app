@@ -1,69 +1,111 @@
 @import "../../../theme/variables.scss";
 
-.slider-page{
+.slider-page {
     height: 100vh;
     width: 100vw;
     background-color: blue;
 }
-  
-//one----------------------------------------
-.slider-page.one{
+
+.slider-page {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    //background-image: url("../../../../assets/imgs/tutorial/slideview-1.png"),radial-gradient(at right, #0aa093 0%, #022231 100%);
     padding: var(--padding);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.slider-page.one .title-first{
-    margin-top: var(--margin);
-    text-align: left;
-    margin-bottom: var(--margin-small);
+
+//one----------------------------------------
+.slider-page.one {
+    background: linear-gradient(-45deg, var(--color-primary-1) 10%, var(--color-primary-3) 100%);
 }
-.slider-page.one .title-second{
-   text-align: left;
-   font-size: var(--fontsize-std);
+
+.slider-page.one img {
+    max-width: 80px;
+}
+
+.slider-page.one .title-first {
+    text-align: center;
+    font-size: calc(var(--fontsize-title) * 1.45);
+}
+
+.slider-page.one .title-second {
+    text-align: center;
+    font-size: var(--fontsize-std);
     text-transform: none;
 }
 
 //two----------------------------------------
-.slider-page.two{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    //background-image: url("../../../../assets/imgs/tutorial/slideview-2.png"),radial-gradient(at right, #138fa5 0%, #020f31 100%);
-    padding: var(--padding);
-}
-.slider-page.two .title-first{
-    margin-top: var(--margin);
-    text-align: right;
-    margin-bottom: var(--margin-small);
-}
-.slider-page.two .title-second{
-   text-align: right;
-   font-size: var(--fontsize-std);
-    text-transform: none;
+.slider-page.two {
+    background-image: url("../../../assets/imgs/first-time/slideview-1.jpg"), radial-gradient(at right, #0aa093 0%, #022231 100%);
 }
 
-//three----------------------------------------
-.slider-page.three{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-   // background-image: url("../../../../assets/imgs/tutorial/slideview-3.png"),radial-gradient(at right, #8d13a5 0%, #310229 100%);
-    padding: var(--padding);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.slider-page.two .heart-icon {
+    color: white;
+    font-size: var(--fontsize-title);
 }
-.slider-page.three .title-first{
+
+.slider-page.two .title-first {
     margin-top: var(--margin);
     text-align: center;
     margin-bottom: var(--margin-small);
 }
-.slider-page.three .title-second{
-   text-align: center;
-   font-size: var(--fontsize-std);
+
+.slider-page.two .title-second {
+    text-align: center;
+    font-size: var(--fontsize-std);
     text-transform: none;
 }
 
+//three----------------------------------------
+.slider-page.three {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-primary-1) 10%, var(--color-primary-3) 100%);
+}
+.bouble-top{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    transform:translate(20vw,-20vw);
+    width: 100vw;   
+    height: 100vw;
+    background-color: var(--color-primary-1);
+    border-radius: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -30px 30px 30px rgba(black,0.1);
+}
+.bouble-bottom{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    transform:translate(-20vw,20vw);
+    width: 100vw;   
+    height: 100vw;
+    background-color: var(--color-primary-1);
+    border-radius: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 30px -30px 30px rgba(black,0.1);
+}
 
+.need-help-btn {
+  animation: 3s wobbleSmooth infinite;
+}
+
+.want-to-help-btn {
+    animation: 3s wobbleSmooth 1.5s infinite;
+}
+
+.slider-page.three .title-first {
+    text-align: center;
+    margin-bottom: var(--margin-small);
+}

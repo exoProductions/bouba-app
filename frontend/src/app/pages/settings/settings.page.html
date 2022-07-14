@@ -1,9 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>settings</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <section id="settings-section">
+    <!-- <app-settings-mentee *ngIf="getIsMentee()"></app-settings-mentee> -->
+    <!-- <app-settings-peer *ngIf="!getIsMentee()"></app-settings-peer> -->
 
+    <ng-container *ngIf="getNicknameIsSet()">
+      <input type="file" class="file-input" (change)="onFileSelected($event)" accept="image/png, image/gif, image/jpeg"
+        #fileUpload>
+
+      <button class="upload-btn" (click)="fileUpload.click()">
+        <fa-icon [icon]="uploadIcon"></fa-icon>
+      </button>
+    </ng-container>
+    <section id="form-wrapper">
+      <form>
+        <div class="input-wrapper">
+          <label for="nickname">Nickname</label>
+          <input class="text-input" type="text" pattern="[a-zA-Z0-9-]+" id="nickname" name="nickname"
+            [(ngModel)]="userdata.nickname" />
+        </div>
+        <div class="input-wrapper">
+          <label for="password">Password</label>
+          <input class="text-input" type="password" pattern="[a-zA-Z0-9-]+" id="password" name="password"
+            [(ngModel)]="userdata.password" />
+        </div>
+        <div class="input-wrapper">
+          <!-- <label for="nickname">Prefered Peers</label>
+        <select class="text-input" name='menu' [(ngModel)]="userdata.preferedPeers">
+          <option value='1'><h1>first item</h1></option>
+          <option value='2'>Burnout Peers</option>
+          <option value='3'>third item</option>
+          <option value='4'>fourth item</option>
+          <option value='5'>fifth item</option>
+        </select> -->
+          <div class="dropdown">
+            <label for="nickname">Prefered Peers</label>
+            <button class="dropbtn"><span>{{userdata.preferedPeers}}</span></button>
+            <div class="dropdown-content">
+              <button (click)="setPreferedPeers()"><span>Link 1</span></button>
+              <button href="#"><span>Link 1</span></button>
+              <button href="#"><span>Link 1</span></button>
+
+            </div>
+          </div>
+        </div>
+        <input class="submit-input" type="submit" (click)="submit()" />
+        <span class="form-error-text">{{formErrorText}}</span>
+      </form>
+    </section>
+  </section>
 </ion-content>

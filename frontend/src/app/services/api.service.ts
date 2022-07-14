@@ -7,11 +7,14 @@ import { Userdata } from '../models/userdata';
   providedIn: 'root'
 })
 export class ApiService {
-  server: string = "https://www.exo-productions.ch";
+  server: string = "https://bouba.io";
   constructor(private httpClient: HttpClient) { }
 
   loadUserdata(nickname:string,password:string): Observable<Userdata> {
-    return this.httpClient.post<Userdata>(`${this.server}/api/bouba/loadUserdata.php`,{nickname:nickname,password:password});
+    return this.httpClient.post<Userdata>(`${this.server}/api/loadUserdata.php`,{nickname:nickname,password:password});
   }
-
+  uploadFile(fileData:any): Observable<string> {
+    console.log("Message Sent!", fileData);
+    return this.httpClient.post<string>(`${this.server}/api/uploadFile.php`, fileData);
+  }
 }

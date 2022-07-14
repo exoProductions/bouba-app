@@ -16,12 +16,12 @@
  @import "./theme/variables.scss";
 
  span.swiper-pagination-bullet.swiper-pagination-bullet-active {
-   background-color: var(--color-accent1);
+   background-color: var(--color-primary-3);
    opacity: 1;
  }
  
  span.swiper-pagination-bullet {
-   background-color: var(--color-light);
+   background-color: white;
    opacity: 1;
  }
  
@@ -99,7 +99,8 @@
  }
  
  .text-input,
- textarea {
+ textarea
+  {
    width: 100%;
    border-radius: var(--std-border-rad-small);
    background-color: white;
@@ -113,9 +114,14 @@
    min-height: var(--btn-submit);
  }
  
+ option h1{
+  padding: var(--padding-small);
+  font-size: var(--fontsize-h4);
+ }
+
  .submit-input {
    width: 100%;
-   background-color: var(--color-accent1);
+   background-color: var(--color-primary-1);
    color: white;
    margin-bottom: var(--margin-small);
    border-radius: var(--std-border-rad-small);
@@ -139,7 +145,53 @@
    font-size: var(--fontsize-std);
    font-family: var(--std-font-light);
  }
- 
+
+ //dropdown-----------------------------------
+ .dropbtn {
+  background-color: white;
+  color: black;
+  box-shadow: 0 10px 10px rgba(black, 0.3);
+  min-height: var(--btn-submit);
+  border-radius: var(--std-border-rad-small);
+  border: none;
+  width: 100%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: var(--margin-small);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 100%;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+  //dropdown-----------------------------------
+
  #content,
  ion-content {
    min-height: 100%;
@@ -174,7 +226,7 @@
  
  .round-button {
    margin-top: var(--margin);
-   background-color: var(--color-accent1);
+   background-color: var(--color-primary-1);
    padding: var(--padding-small);
    border-radius: var(--navbar-height);
    box-shadow: 0px 10px 20px rgba(black, 0.5);
@@ -199,6 +251,7 @@
    //background-image: url("./assets/svgs/waves-1.svg");
  }
  
+
  //animations--------------------------------
  
  //flex----------------------------

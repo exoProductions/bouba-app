@@ -13,7 +13,8 @@ export class InitService {
     nickname: "",
     password: "",
     description: "",
-    preferedPeers: "",
+    preferedPeers: "1",
+    isMentee:true,
   }
 
   isFirstTime: boolean = false;
@@ -30,8 +31,8 @@ export class InitService {
     this.storageService.getData(0, "nickname").subscribe(nickname => {
       this.userdata.nickname = nickname == null || nickname == "" ? "" : nickname; //uncomment
       if (this.userdata.nickname.length == 0) {
-        this.isFirstTime = true;
-        this.router.navigate(["./First-time"]);
+        //this.isFirstTime = true; //todo uncomment
+       // this.router.navigate(["./First-time"]); //todo uncomment
       } else {
         this.storageService.getData(0, "password").subscribe(password => {
           this.userdata.password = password == null || password == "" ? "" : password; //uncomment
@@ -39,6 +40,7 @@ export class InitService {
             this.loadUserdata();
           }else{
             this.isFirstTime = true;
+           // this.router.navigate(["./First-time"]); //todo uncomment
           }
         });
       }

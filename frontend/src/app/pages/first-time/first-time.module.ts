@@ -8,6 +8,7 @@ import { FirstTimePageRoutingModule } from './first-time-routing.module';
 
 import { FirstTimePage } from './first-time.page';
 import { SwiperModule } from 'swiper/angular';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { SwiperModule } from 'swiper/angular';
     IonicModule,
     FirstTimePageRoutingModule,
     SwiperModule,
+    FontAwesomeModule,
   ],
   declarations: [FirstTimePage]
 })

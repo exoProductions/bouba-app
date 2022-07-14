@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { faHandshakeAngle, faHeart, faSeedling } from '@fortawesome/free-solid-svg-icons';
+import { InitService } from 'src/app/services/init.service';
 import Swiper, { Pagination, SwiperOptions } from 'swiper';
 
 @Component({
@@ -15,12 +18,20 @@ export class FirstTimePage implements OnInit {
     pagination: true,
     scrollbar: { draggable: true },
   };
-  constructor() { }
+
+  heartIcon=faHeart;
+  iHelpIcon=faHandshakeAngle;
+  iNeedHelpIcon=faSeedling;
+
+  constructor( private initService:InitService,private router:Router) { }
 
   ngOnInit() {
     Swiper.use([Pagination]);
   }
-  start():void{
-    
+  start(isMentee:boolean):void{
+    console.log(isMentee);
+    this.initService.userdata.isMentee=isMentee;
+    this.initService.isFirstTime=false;
+    this.router.navigate(["./Settings"]);
   }
 }
