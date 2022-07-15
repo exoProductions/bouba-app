@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Userdata } from 'src/app/models/userdata';
 import { ApiService } from 'src/app/services/api.service';
 import { InitService } from 'src/app/services/init.service';
@@ -17,14 +17,20 @@ export class SettingsPage implements OnInit {
   fileUploadWorked: boolean = false;
   fileUploaded: boolean = false;
 
-  uploadIcon = faUpload;
+  uploadIcon = faPen;
 
   userdata: Userdata = {
+    nicknameChanged:false,
+    oldNickname:"",
+    firstNickname:"",
     nickname: "",
     password: "",
     description: "",
     preferedPeers: "2",
     isMentee: true,
+    age:0,
+    gender:"Male",
+    language:"Deutsch",
   }
   formErrorText: string = "";
 
@@ -32,11 +38,16 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {
     this.navigationService.currentPageInd = 3;
-    this.userdata=this.initService.userdata;
+    setTimeout(()=>{
+      if(this.initService.userdata.nickname.length>0){
+        this.userdata=JSON.parse(JSON.stringify(this.initService.userdata));
+      }
+    },1000);
+    console.log(this.userdata);
   }
 
-  setPreferedPeers():void{
-    
+  setPreferedPeers(): void {
+
   }
 
   onFileSelected(event: any) {
@@ -51,7 +62,7 @@ export class SettingsPage implements OnInit {
       if ((file.size / 1048576) <= 10) {
         let formData = new FormData();
         let info = { id: 2, name: 'raja' }
-        formData.append('file', file, "blabla.jpg");
+        formData.append('file', file, this.initService.userdata.firstNickname+".jpg");
         formData.append('id', '2');
         formData.append('tz', new Date().toISOString())
         formData.append('update', '2')
@@ -80,8 +91,49 @@ export class SettingsPage implements OnInit {
     return this.initService.userdata.nickname.length > 0;
   }
 
-  submit(): void {
+  submit(firstTime: boolean): void {
     console.log(this.userdata);
+    if (this.userdata.nickname.length > 0) {
+      this.apiService.verifyUserdata(this.userdata).subscribe((worked: boolean) => {
+        if (worked) {
+          this.initService.userdata=JSON.parse(JSON.stringify(this.userdata));
+          this.formErrorText = "";
+          this.initService.setUserdataLocal();
+        } else {
+          this.formErrorText = "This nickname already exists!";
+        }
+      });
+    }
+  }
+
+  update():void{
+    console.log(this.userdata);
+    if (this.userdata.nickname.length > 0) {
+      console.log(this.userdata.nickname, this.initService.userdata.nickname);
+      if(this.userdata.nickname===this.initService.userdata.nickname){
+        this.userdata.nicknameChanged=false;
+      }else{
+        this.userdata.oldNickname=JSON.parse(JSON.stringify(this.initService.userdata)).nickname;
+        this.userdata.nicknameChanged=true;
+        console.log(this.userdata.oldNickname);
+      }
+      console.log(this.userdata.nicknameChanged);
+      this.apiService.updateUserdata(this.userdata).subscribe((worked: boolean) => {
+        if (worked) {
+          this.initService.userdata=JSON.parse(JSON.stringify(this.userdata));
+          console.log(this.userdata);
+          this.formErrorText = "";
+          this.initService.setUserdataLocal();
+        } else {
+          this.formErrorText = "This nickname already exists!";
+        }
+        console.log(worked);
+      });
+    }
+  }
+
+  getProfilePicture():string{
+    return this.initService.userdata.firstNickname+".jpg";
   }
 
 }

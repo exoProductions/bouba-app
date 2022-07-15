@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Mentee } from 'src/app/models/mentee';
+import { Peer } from 'src/app/models/peer';
+import { InitService } from 'src/app/services/init.service';
 import { NavigationService } from 'src/app/services/navigation.service';
+import { PeerMenteeService } from 'src/app/services/peer-mentee.service';
+import Swiper, { Pagination, SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +12,28 @@ import { NavigationService } from 'src/app/services/navigation.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  config: SwiperOptions = {
+    slidesPerView: 1,
+    navigation: true,
+    pagination: false,
+    scrollbar: { draggable: true },
+  };
 
-  constructor(private navigationService:NavigationService) { }
+  constructor(private navigationService:NavigationService,private initService:InitService,private peerMenteeService:PeerMenteeService) { }
 
   ngOnInit() {
+    Swiper.use([Pagination]);
     this.navigationService.currentPageInd=1;
+  }
+
+  getPeerList():Peer[]{
+    return this.peerMenteeService.peerList;
+  }
+  getMenteeList():Mentee[]{
+    return this.peerMenteeService.menteeList;
+  }
+  getIsMentee():boolean{
+    return this.initService.userdata.isMentee;
   }
 
 }

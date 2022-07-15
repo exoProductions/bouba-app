@@ -1,9 +1,44 @@
+
 #settings-section{
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 100%;
+}
+#settings-wrapper{
+    overflow-y:auto;
+}
+#profile-img-container {
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../../assets/imgs/settings/profile-blank.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100px;
+    border: solid 3px var(--color-primary-1);
+    overflow: hidden;
+    box-shadow: 0px 20px 20px rgba(black, 0.3);
+    margin-top: var(--margin);
+}
+
+.upload-btn {
+    background-color: var(--color-primary-1);
+    width: var(--btn-small);
+    height: var(--btn-small);
+    border-radius: var(--btn-small);
+    transform: translate(50px, -30px);
+    color: white;
+}
+
+#settings-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
 }
 
 .file-input {
@@ -13,4 +48,56 @@ height: 100%;
 #form-wrapper {
     max-width: 512px;
     padding: var(--padding-small);
+}
+
+label {
+    color: white;
+}
+
+textarea {
+    min-height: 20vh;
+    width: 100%;
+    min-width: 100%;
+}
+
+//radio-btn_-----------------------------------
+
+.radio-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: var(--margin-small);
+}
+
+.option-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.radio-btn {
+    width: var(--btn-smaller);
+    height: var(--btn-smaller);
+    margin-right: var(--margin-smaller);
+    border-radius: var(--btn-smaller);
+    background-color: var(--color-lightest);
+    border: solid 4px white;
+    box-shadow: 0px 10px 10px rgba(black, 0.3);
+    transition: 0.3s background-color;
+}
+
+.radio-btn.selected {
+    background-color: var(--color-primary-1);
+}
+
+.option-wrapper span {
+    margin-right: var(--margin-small);
+    color: white;
+}
+.submit-input{
+    margin-bottom: calc(var(--navbar-height) * 1.5);
+}
+.form-error-text {
+    color: white;
 }

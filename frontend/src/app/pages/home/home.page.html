@@ -1,3 +1,27 @@
 <ion-content>
+    <swiper [config]="config" *ngIf="getIsMentee()">
+        <ng-container *ngFor="let peer of getPeerList();let i = index">
+            <ng-template swiperSlide>
+                <div class="slider-page one">
+                    <img src="./assets/imgs/logos/logo-white.png" alt="logo" />
+                    <h1 class="title-first">Bouba</h1>
+                    <h1 class="title-second">The simple mental health platform
+                    </h1>
+                </div>
+            </ng-template>
+        </ng-container>
+    </swiper>
 
+    <swiper [config]="config" *ngIf="!getIsMentee()">
+        <ng-container *ngFor="let mentee of getMenteeList();let i = index">
+            <ng-template swiperSlide>
+                <div class="slider-page one">
+                    <img src="./assets/imgs/logos/logo-white.png" alt="logo" />
+                    <h1 class="title-first">Bouba</h1>
+                    <h1 class="title-second">The simple mental health platform
+                    </h1>
+                </div>
+            </ng-template>
+        </ng-container>
+    </swiper>
 </ion-content>

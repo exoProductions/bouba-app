@@ -44,9 +44,8 @@ $actual_fname=preg_replace('/[^A-Za-z0-9\-]/', '', $actual_fname);
 //set random unique name why because file name duplicate will replace
 //the existing files
 //$modified_fname=uniqid(rand(10,200)).'-'.rand(1000,1000000).'-'.$actual_fname;
-
 //set target file path
-$target_path = $target_path . basename($actual_fname).".".$ext;
+$target_path = $target_path . $_FILES['file']['name'];
  
 
 //move the file to target folder

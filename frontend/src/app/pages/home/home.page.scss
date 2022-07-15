@@ -1,0 +1,18 @@
+
+.slider-page {
+    height: 100vh;
+    width: 100vw;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: var(--padding);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+//one----------------------------------------
+
