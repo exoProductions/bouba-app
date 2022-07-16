@@ -31,23 +31,28 @@ if (isset($postdata) && !empty($postdata)) {
     echo json_encode($userdata);
 */
     
-    $hashed_password = password_hash($password_post, PASSWORD_DEFAULT);
-    $sql = "SELECT firstNickname,preferedPeer,description,isMentee FROM bouba_userdata_tbl WHERE nickname = '{$nickname_post}'";
+    $sql = "SELECT password,firstNickname,preferedPeer,description,isMentee,age,gender,language FROM bouba_userdata_tbl WHERE nickname = '{$nickname_post}'";
     $qry = mysqli_query($con, $sql);
 
     while ($row = mysqli_fetch_assoc($qry)) {
-        // echo json_encode($row['description']);  
-        $userdata = [
-            'nicknameChanged'=>false,
-            'oldNickname'=>"",
-            'firstNickname' => $row["firstNickname"],
-            'nickname' => $nickname_post,
-            'password' => $password_post,
-            'description' => $row["description"],
-            'perferedPeer' => $row["preferedPeer"],
-            'isMentee' => filter_var($row["isMentee"], FILTER_VALIDATE_BOOLEAN),
-        ];
-        echo json_encode($userdata);
+    if(password_verify($password_post, $row["password"])){
+            // echo json_encode($row['description']);  
+            $userdata = [
+                'nicknameChanged'=>false,
+                'oldNickname'=>"",
+                'firstNickname' => $row["firstNickname"],
+                'nickname' => $nickname_post,
+                'password' => $password_post,
+                'description' => $row["description"],
+                'perferedPeer' => $row["preferedPeer"],
+                'isMentee' => filter_var($row["isMentee"], FILTER_VALIDATE_BOOLEAN),
+                'age' => filter_var($row["age"], FILTER_VALIDATE_INT),
+                'gender' => $row["gender"],
+                'language' => $row["language"],
+    
+            ];
+            echo json_encode($userdata);
+    }
     }
 
     mysqli_free_result($qry);

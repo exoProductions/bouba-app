@@ -6,5 +6,6 @@ import { Injectable } from '@angular/core';
 export class NavigationService {
   pages:string[]=["Chat","Home","News","Settings"]
   currentPageInd:number=0;
+  showNavFade:boolean=false;
   constructor() { }
 }

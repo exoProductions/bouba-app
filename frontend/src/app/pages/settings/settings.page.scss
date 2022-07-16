@@ -26,8 +26,9 @@
 
 .upload-btn {
     background-color: var(--color-primary-1);
-    width: var(--btn-small);
-    height: var(--btn-small);
+    min-width: var(--btn-small);
+    min-height: var(--btn-small);
+    
     border-radius: var(--btn-small);
     transform: translate(50px, -30px);
     color: white;

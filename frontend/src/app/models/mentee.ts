@@ -1,5 +1,5 @@
 export class Mentee {
     nickname:string;
-    age:number;
+    preferedPeer:string;
     description:string;
 }

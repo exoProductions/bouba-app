@@ -1,9 +1,10 @@
 <ion-content>
+  <app-worked-popup *ngIf="showWorked"></app-worked-popup>
   <section id="settings-section">
     <!-- <app-settings-mentee *ngIf="getIsMentee()"></app-settings-mentee> -->
     <!-- <app-settings-peer *ngIf="!getIsMentee()"></app-settings-peer> -->
 
-    <ng-container id="settings-wrapper" *ngIf="getNicknameIsSet()">
+    <ng-container id="settings-wrapper" *ngIf="getNicknameIsSet() && getHomeIsLoaded()">
 
       <div id="profile-img-container" >
         <img *ngIf="getProfilePicture().length>4" src="https://bouba.io/api/uploads/{{getProfilePicture()}}" alt="profile" />
@@ -27,26 +28,29 @@
             <input class="text-input" type="password" pattern="[a-zA-Z0-9-]+" id="password" name="password"
               [(ngModel)]="userdata.password" />
           </div>
+          <ng-container *ngIf="!userdata.isMentee">
+            <div class="input-wrapper">
+              <label for="password">Age</label>
+              <input class="text-input" type="number" pattern="[a-zA-Z0-9-]+" id="age" name="age"
+                [(ngModel)]="userdata.age" />
+            </div>
+            <div class="input-wrapper">
+              <label for="password">Gender</label>
+              <input class="text-input" type="text" pattern="[a-zA-Z0-9-]+" id="gender" name="gender"
+                [(ngModel)]="userdata.gender" />
+            </div>
+            <div class="input-wrapper">
+              <label for="password">Language</label>
+              <input class="text-input" type="text" pattern="[a-zA-Z0-9-]+" id="language" name="language"
+                [(ngModel)]="userdata.language" />
+            </div>
+          </ng-container>
           <div class="input-wraper">
             <label for="description">Describe yourself</label>
             <textarea id="description" name="description" maxlength="500" [(ngModel)]="userdata.description">
           </textarea>
           </div>
-          <div class="input-wrapper">
-            <label for="password">Age</label>
-            <input class="text-input" type="number" pattern="[a-zA-Z0-9-]+" id="age" name="age"
-              [(ngModel)]="userdata.age" />
-          </div>
-          <div class="input-wrapper">
-            <label for="password">Gender</label>
-            <input class="text-input" type="text" pattern="[a-zA-Z0-9-]+" id="gender" name="gender"
-              [(ngModel)]="userdata.gender" />
-          </div>
-          <div class="input-wrapper">
-            <label for="password">Language</label>
-            <input class="text-input" type="text" pattern="[a-zA-Z0-9-]+" id="language" name="language"
-              [(ngModel)]="userdata.language" />
-          </div>
+      
           <!-- <div class="input-wrapper">
           <div class="dropdown">
             <label for="nickname">Prefered Peers</label>
@@ -70,7 +74,7 @@
               <span>I want to Help</span>
             </div>
           </div>
-          <input class="submit-input" type="submit" value="Submit" (click)="update()" />
+          <input class="submit-input" type="submit" value="Save" (click)="update()" />
           <span class="form-error-text">{{formErrorText}}</span>
         </form>
       </section>
@@ -84,7 +88,7 @@
             <input class="text-input" type="text" pattern="[a-zA-Z0-9-]+" id="nickname" name="nickname"
               [(ngModel)]="userdata.nickname" />
           </div>
-          <input class="submit-input" type="submit" (click)="submit(true)" />
+          <input class="submit-input" type="submit" value="Save" (click)="submit(true)" />
           <span class="form-error-text">{{formErrorText}}</span>
         </form>
       </section>

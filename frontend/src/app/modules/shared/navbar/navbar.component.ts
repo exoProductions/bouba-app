@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
     return this.ns.currentPageInd;
   }
   showFade():boolean{
-    return false;
+    return this.ns.showNavFade;
   }
   showNavbar():boolean{
     return !this.initService.isFirstTime;

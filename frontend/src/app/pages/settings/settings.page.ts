@@ -34,6 +34,8 @@ export class SettingsPage implements OnInit {
   }
   formErrorText: string = "";
 
+  showWorked:boolean=false;
+
   constructor(private apiService: ApiService, private initService: InitService, private navigationService: NavigationService) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class SettingsPage implements OnInit {
       }
     },1000);
     console.log(this.userdata);
+    this.navigationService.showNavFade=true;
   }
 
   setPreferedPeers(): void {
@@ -124,6 +127,11 @@ export class SettingsPage implements OnInit {
           console.log(this.userdata);
           this.formErrorText = "";
           this.initService.setUserdataLocal();
+          this.showWorked=true;
+          this.initService.loadPeersAndMentees();
+          setTimeout(()=>{
+            this.showWorked=false;
+          },2000);
         } else {
           this.formErrorText = "This nickname already exists!";
         }
@@ -132,8 +140,14 @@ export class SettingsPage implements OnInit {
     }
   }
 
+
+
   getProfilePicture():string{
     return this.initService.userdata.firstNickname+".jpg";
   }
+  getHomeIsLoaded():boolean{
+    return this.initService.homeIsLoaded;
+  }
+
 
 }

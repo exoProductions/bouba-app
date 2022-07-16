@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Mentee } from '../models/mentee';
+import { Peer } from '../models/peer';
 import { Userdata } from '../models/userdata';
 
 @Injectable({
@@ -12,6 +14,12 @@ export class ApiService {
 
   loadUserdata(nickname:string,password:string): Observable<Userdata> {
     return this.httpClient.post<Userdata>(`${this.server}/api/loadUserdata.php`,{nickname:nickname,password:password});
+  }
+  loadPeers(nickname:string,password:string): Observable<Peer[]> {
+    return this.httpClient.post<Peer[]>(`${this.server}/api/loadPeers.php`,{nickname:nickname,password:password});
+  }
+  loadMentees(nickname:string,password:string): Observable<Mentee[]> {
+    return this.httpClient.post<Mentee[]>(`${this.server}/api/loadMentees.php`,{nickname:nickname,password:password});
   }
   
   uploadFile(fileData:any): Observable<string> {

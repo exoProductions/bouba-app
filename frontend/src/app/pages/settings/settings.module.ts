@@ -10,6 +10,7 @@ import { SettingsPage } from './settings.page';
 import { SettingsPeerComponent } from './settings-peer/settings-peer.component';
 import { SettingsMenteeComponent } from './settings-mentee/settings-mentee.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SettingsPageRoutingModule,
     FontAwesomeModule,
     FormsModule,
+    SharedModule,
   ],
   declarations: [
     SettingsPage,
