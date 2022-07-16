@@ -9,6 +9,7 @@ function addMentee($row, $ind)
 
     $mentee = [
         'nickname' =>$row["nickname"],
+        'firstNickname' => $row["firstNickname"],
         'preferedPeer' =>$row["preferedPeer"],
         'description' =>$row["description"],
     ];
@@ -39,7 +40,7 @@ if (isset($postdata) && !empty($postdata)) {
     while ($row = mysqli_fetch_assoc($qry)) {
         if (password_verify($password_post, $row["password"])) {
 
-            $sql2 = "SELECT nickname,preferedPeer,description FROM bouba_userdata_tbl WHERE isMentee = true";
+            $sql2 = "SELECT nickname,firstNickname,preferedPeer,description FROM bouba_userdata_tbl WHERE isMentee = true";
             $qry2 = mysqli_query($con, $sql2);
         
             $ind=0;

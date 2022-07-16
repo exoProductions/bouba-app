@@ -1,7 +1,8 @@
 export class Peer {
     nickname:string;
+    firstNickname:string;
     age:number;
     gender:string;
-    Language:string;
+    language:string;
     description:string;
 }

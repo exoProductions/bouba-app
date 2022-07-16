@@ -7,7 +7,7 @@
     <ng-container id="settings-wrapper" *ngIf="getNicknameIsSet() && getHomeIsLoaded()">
 
       <div id="profile-img-container" >
-        <img *ngIf="getProfilePicture().length>4" src="https://bouba.io/api/uploads/{{getProfilePicture()}}" alt="profile" />
+        <img *ngIf="getProfilePicture().length>4 && showProfile" src="https://bouba.io/api/uploads/{{getProfilePicture()}}" alt="profile" (error)="showProfile=false" />
       </div>
 
       <input type="file" class="file-input" (change)="onFileSelected($event)" accept="image/png, image/gif, image/jpeg"
@@ -74,24 +74,27 @@
               <span>I want to Help</span>
             </div>
           </div>
-          <input class="submit-input" type="submit" value="Save" (click)="update()" />
           <span class="form-error-text">{{formErrorText}}</span>
+          <input class="submit-input" type="submit" value="Save" (click)="update()" />
         </form>
       </section>
     </ng-container>
 
     <ng-container *ngIf="!getNicknameIsSet()">
-      <section id="form-wrapper">
-        <form>
-          <div class="input-wrapper">
-            <label for="nickname">Nickname</label>
-            <input class="text-input" type="text" pattern="[a-zA-Z0-9-]+" id="nickname" name="nickname"
-              [(ngModel)]="userdata.nickname" />
-          </div>
-          <input class="submit-input" type="submit" value="Save" (click)="submit(true)" />
-          <span class="form-error-text">{{formErrorText}}</span>
-        </form>
+      <section class="first-settings">
+        <section id="form-wrapper">
+          <form>
+            <div class="input-wrapper">
+              <label for="nickname">Nickname</label>
+              <input class="text-input" type="text" pattern="[a-zA-Z0-9-]+" id="nickname" name="nickname"
+                [(ngModel)]="userdata.nickname" />
+            </div>
+            <span class="form-error-text">{{formErrorText}}</span>
+            <input class="submit-input" type="submit" value="Save" (click)="submit(true)" />
+          </form>
+        </section>
       </section>
+     
     </ng-container>
   </section>
 

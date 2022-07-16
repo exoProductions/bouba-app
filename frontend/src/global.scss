@@ -238,15 +238,18 @@ ion-content {
 
 //svgs--------------------------------------
 .spacer1 {
-  aspect-ratio: 900/450;
+  aspect-ratio: 45/100;
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
 }
 
 .layer1 {
-  //background-image: url("./assets/svgs/waves-1.svg");
+  background-image: url("./assets/svgs/card.svg");
+}
+.layer2 {
+  background-image: url("./assets/svgs/background.svg");
 }
 
 

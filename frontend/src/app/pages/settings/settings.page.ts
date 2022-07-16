@@ -16,37 +16,38 @@ export class SettingsPage implements OnInit {
 
   fileUploadWorked: boolean = false;
   fileUploaded: boolean = false;
+  showProfile: boolean = true;
 
   uploadIcon = faPen;
 
   userdata: Userdata = {
-    nicknameChanged:false,
-    oldNickname:"",
-    firstNickname:"",
+    nicknameChanged: false,
+    oldNickname: "",
+    firstNickname: "",
     nickname: "",
     password: "",
     description: "",
     preferedPeers: "2",
     isMentee: true,
-    age:0,
-    gender:"Male",
-    language:"Deutsch",
+    age: 0,
+    gender: "Male",
+    language: "Deutsch",
   }
   formErrorText: string = "";
 
-  showWorked:boolean=false;
+  showWorked: boolean = false;
 
   constructor(private apiService: ApiService, private initService: InitService, private navigationService: NavigationService) { }
 
   ngOnInit() {
     this.navigationService.currentPageInd = 3;
-    setTimeout(()=>{
-      if(this.initService.userdata.nickname.length>0){
-        this.userdata=JSON.parse(JSON.stringify(this.initService.userdata));
+    setTimeout(() => {
+      if (this.initService.userdata.nickname.length > 0) {
+        this.userdata = JSON.parse(JSON.stringify(this.initService.userdata));
       }
-    },1000);
+    }, 1000);
     console.log(this.userdata);
-    this.navigationService.showNavFade=true;
+    this.navigationService.showNavFade = true;
   }
 
   setPreferedPeers(): void {
@@ -64,8 +65,10 @@ export class SettingsPage implements OnInit {
       //max file size is 4 mb
       if ((file.size / 1048576) <= 10) {
         let formData = new FormData();
+        console.log();
+        let imgName=this.initService.userdata.firstNickname.length==0?this.initService.userdata.nickname:this.initService.userdata.firstNickname;
         let info = { id: 2, name: 'raja' }
-        formData.append('file', file, this.initService.userdata.firstNickname+".jpg");
+        formData.append('file', file, imgName + ".jpg");
         formData.append('id', '2');
         formData.append('tz', new Date().toISOString())
         formData.append('update', '2')
@@ -76,7 +79,10 @@ export class SettingsPage implements OnInit {
         this.apiService.uploadFile(this.file_data).subscribe((path: string) => {
           console.log("uploaded: ", path);
           this.fileUploadWorked = path.length > 0;
-
+          this.showProfile=false;
+          setTimeout(()=>{
+            this.showProfile=true;
+          },500);
           this.fileUploaded = true;
         });
       } else {
@@ -99,7 +105,7 @@ export class SettingsPage implements OnInit {
     if (this.userdata.nickname.length > 0) {
       this.apiService.verifyUserdata(this.userdata).subscribe((worked: boolean) => {
         if (worked) {
-          this.initService.userdata=JSON.parse(JSON.stringify(this.userdata));
+          this.initService.userdata = JSON.parse(JSON.stringify(this.userdata));
           this.formErrorText = "";
           this.initService.setUserdataLocal();
         } else {
@@ -109,29 +115,29 @@ export class SettingsPage implements OnInit {
     }
   }
 
-  update():void{
+  update(): void {
     console.log(this.userdata);
     if (this.userdata.nickname.length > 0) {
       console.log(this.userdata.nickname, this.initService.userdata.nickname);
-      if(this.userdata.nickname===this.initService.userdata.nickname){
-        this.userdata.nicknameChanged=false;
-      }else{
-        this.userdata.oldNickname=JSON.parse(JSON.stringify(this.initService.userdata)).nickname;
-        this.userdata.nicknameChanged=true;
+      if (this.userdata.nickname === this.initService.userdata.nickname) {
+        this.userdata.nicknameChanged = false;
+      } else {
+        this.userdata.oldNickname = JSON.parse(JSON.stringify(this.initService.userdata)).nickname;
+        this.userdata.nicknameChanged = true;
         console.log(this.userdata.oldNickname);
       }
       console.log(this.userdata.nicknameChanged);
       this.apiService.updateUserdata(this.userdata).subscribe((worked: boolean) => {
         if (worked) {
-          this.initService.userdata=JSON.parse(JSON.stringify(this.userdata));
+          this.initService.userdata = JSON.parse(JSON.stringify(this.userdata));
           console.log(this.userdata);
           this.formErrorText = "";
           this.initService.setUserdataLocal();
-          this.showWorked=true;
+          this.showWorked = true;
           this.initService.loadPeersAndMentees();
-          setTimeout(()=>{
-            this.showWorked=false;
-          },2000);
+          setTimeout(() => {
+            this.showWorked = false;
+          }, 2000);
         } else {
           this.formErrorText = "This nickname already exists!";
         }
@@ -142,10 +148,11 @@ export class SettingsPage implements OnInit {
 
 
 
-  getProfilePicture():string{
-    return this.initService.userdata.firstNickname+".jpg";
+  getProfilePicture(): string {
+    let imgName=this.initService.userdata.firstNickname.length==0?this.initService.userdata.nickname:this.initService.userdata.firstNickname;
+    return imgName + ".jpg";
   }
-  getHomeIsLoaded():boolean{
+  getHomeIsLoaded(): boolean {
     return this.initService.homeIsLoaded;
   }
 

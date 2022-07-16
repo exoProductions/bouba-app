@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { SwiperModule } from 'swiper/angular';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { SwiperModule } from 'swiper/angular';
     IonicModule,
     HomePageRoutingModule,
     SwiperModule,
+    FontAwesomeModule,
   ],
   declarations: [HomePage]
 })

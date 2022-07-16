@@ -1,9 +1,17 @@
 
 #settings-section{
+    height: 100vh;
 }
 #settings-wrapper{
     overflow-y:auto;
 }
+.first-settings{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 #profile-img-container {
     width: 200px;
     height: 200px;
