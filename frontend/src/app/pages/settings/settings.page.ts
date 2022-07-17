@@ -106,6 +106,7 @@ export class SettingsPage implements OnInit {
         if (worked) {
           this.initService.userdata = JSON.parse(JSON.stringify(this.userdata));
           this.formErrorText = "";
+          this.userdata.password="insecure";
           this.initService.setUserdataLocal();
         } else {
           this.formErrorText = "This nickname already exists!";

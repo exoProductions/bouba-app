@@ -10,7 +10,7 @@ import { PeerMenteeService } from './peer-mentee.service';
 })
 export class ChatService {
 
-  toMuchChatsText: string = "";
+  toMuchChatsText: string = "Buy premium to have more than 2 chats";
 
   homeSelectedChatInd: number = 0;
   chats: ChatMembers[] = [];
@@ -47,8 +47,11 @@ export class ChatService {
 
   loadChatPage(nickname: string, password: string, isMentee: boolean): void {
     this.apiService.loadChats(nickname, password, isMentee).subscribe((chatMembers: ChatMembers[]) => {
-      chatMembers.length > 0 && chatMembers != null ? this.chats = chatMembers : this.chats = [];
-      console.log(chatMembers);
+      if(chatMembers !=undefined){
+        chatMembers.length > 0 && chatMembers != null ? this.chats = chatMembers : this.chats = [];
+        console.log(this.chats);
+      }
+
     });
   }
 }

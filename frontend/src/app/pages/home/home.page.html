@@ -5,7 +5,7 @@
     <button class="go-right-btn" (click)="nextSlide(true)">
         <h1><fa-icon [icon]="rightIcon"></fa-icon></h1>
     </button>
-    <section class=" spacer1 layer2">
+    <section class="spacer1 layer2">
         <swiper #swiper [config]="config" *ngIf="getIsMentee()">
             <ng-container *ngFor="let peer of getPeerList();let i = index">
                 <ng-template swiperSlide>
@@ -13,7 +13,7 @@
                         <div class="card spacer1 layer1">
                             <div id="profile-img-container">
                                 <img *ngIf="getProfilePicture(i).length>4"
-                                    src="https://bouba.io/api/uploads/{{getProfilePicture(i)}}" alt="profile" />
+                                    src="https://bouba.io/api/uploads/{{getProfilePicture(i)}}" alt="profile" onerror="this.onerror=null;this.src='./assets/imgs/settings/profile-blank.png';" />
                             </div>
                             <ul class="userdata-list">
                                 <li>
@@ -46,14 +46,29 @@
             </ng-container>
         </swiper>
 
-        <swiper [config]="config" *ngIf="!getIsMentee()">
-            <ng-container *ngFor="let mentee of getMenteeList();let i = index">
+        <swiper #swiper2 [config]="config" *ngIf="!getIsMentee()">
+            <ng-container *ngFor="let peer of getMenteeList();let i = index">
                 <ng-template swiperSlide>
-                    <div class="slider-page one">
-                        <img src="./assets/imgs/logos/logo-white.png" alt="logo" />
-                        <h1 class="title-first">Bouba</h1>
-                        <h1 class="title-second">The simple mental health platform
-                        </h1>
+                    <div class="slider-page">
+                        <div class="card spacer1 layer1">
+                            <div id="profile-img-container">
+                                <img *ngIf="getProfilePicture(i).length>4"
+                                    src="https://bouba.io/api/uploads/{{getProfilePicture(i)}}" alt="profile" onerror="this.onerror=null;this.src='./assets/imgs/settings/profile-blank.png';" />
+                            </div>
+                            <ul class="userdata-list">
+                                <li>
+                                    <h1 class="title-first">{{peer.nickname}}</h1>
+                                </li>
+                                <li>
+                                    <h1 class="title-second">Description</h1>
+                                    <span class="text">{{peer.description}}</span>
+                                </li>
+                            </ul>
+                            <button class="chat-btn" (click)="addChat(i)">
+                                <h1><fa-icon [icon]="chatIcon"></fa-icon></h1>
+                                <span>Chat Now</span>
+                            </button>
+                        </div>
                     </div>
                 </ng-template>
             </ng-container>

@@ -18,6 +18,7 @@ import { SwiperComponent } from 'swiper/angular';
 export class HomePage implements OnInit {
 
   @ViewChild('swiper', { static: false }) swiper!: SwiperComponent;
+  @ViewChild('swiper2', { static: false }) swiper2!: SwiperComponent;
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -42,7 +43,11 @@ export class HomePage implements OnInit {
   }
 
   nextSlide(next:boolean):void{
+    if(this.initService.userdata.isMentee){
       next? this.swiper.swiperRef.slideNext(400):this.swiper.swiperRef.slidePrev(400);
+    }else{
+      next? this.swiper2.swiperRef.slideNext(400):this.swiper2.swiperRef.slidePrev(400);
+    }
   }
 
   getPeerList(): Peer[] {
@@ -57,8 +62,10 @@ export class HomePage implements OnInit {
   getProfilePicture(ind: number): string {
     if (this.getIsMentee()) {
       return this.peerMenteeService.peerList[ind].firstNickname + ".jpg";
+    }else{
+      console.log(this.peerMenteeService.menteeList[ind].firstNickname);
+      return this.peerMenteeService.menteeList[ind].firstNickname + ".jpg";
     }
-
   }
 
 }

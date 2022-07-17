@@ -63,7 +63,11 @@
     margin-top: var(--margin-large);
     margin-bottom: var(--margin-large);
 }
-
+#profile-img-container img{
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%
+}
 .userdata-list li{
     display: flex;
     flex-direction: column;

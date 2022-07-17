@@ -18,7 +18,7 @@ export class InitService {
     oldNickname: "",
     firstNickname: "",
     nickname: "",
-    password: "",
+    password: "insecure",
     description: "",
     preferedPeers: "1",
     isMentee: true,
@@ -29,6 +29,7 @@ export class InitService {
 
   isFirstTime: boolean = false;
   homeIsLoaded: boolean = true; //has to be false
+  chatsAreLoaded:boolean=false;
   constructor(private storageService: StorageService, private apiService: ApiService, private chatService: ChatService, private peerMenteeService: PeerMenteeService, private router: Router) {
     this.initHome();
     setTimeout(() => {
@@ -71,11 +72,13 @@ export class InitService {
       this.apiService.loadPeers(this.userdata.nickname, this.userdata.password).subscribe((peers: Peer[]) => {
         this.peerMenteeService.peerList = peers;
         console.log(this.peerMenteeService.peerList);
+        this.chatsAreLoaded=true;
       });
     } else {
       this.apiService.loadMentees(this.userdata.nickname, this.userdata.password).subscribe((mentees: Mentee[]) => {
         this.peerMenteeService.menteeList = mentees;
         console.log(this.peerMenteeService.menteeList);
+        this.chatsAreLoaded=true;
       });
     }
   }
@@ -83,6 +86,7 @@ export class InitService {
   //----------------------------------------
 
   setUserdataLocal() {
+    this.userdata.password.length == 0 ? this.userdata.password = "insecure" : this.userdata.password;
     this.storageService.addData(1, "nickname", this.userdata.nickname) //has to be false
     this.storageService.addData(1, "password", this.userdata.password) //has to be false
     console.log("safed");

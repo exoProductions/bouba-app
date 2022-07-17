@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatPageRoutingModule
+    ChatPageRoutingModule,
+    FontAwesomeModule,
   ],
   declarations: [ChatPage]
 })

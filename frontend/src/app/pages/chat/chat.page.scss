@@ -1,0 +1,72 @@
+.spacer1 {
+    height: 100vh;
+    padding: var(--padding-small);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-title {
+    margin-top: var(--margin);
+    margin-bottom: var(--margin);
+}
+
+#chat-list {
+    margin-bottom: var(--margin);
+    width: 100%;
+}
+
+$pic-size: 110px;
+
+.chat-item {
+    width: 100%;
+    height: $pic-size;
+    background-color: white;
+    border-radius: var(--std-border-rad);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    transform: scale(1);
+    transition: 0.3s transform;
+}
+
+.chat-item:hover {
+    transform: scale(1.02);
+}
+
+#profile-img-container {
+    width: $pic-size;
+    height: $pic-size;
+    min-width: $pic-size;
+    min-height: $pic-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../../assets/imgs/settings/profile-blank.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0% 10% 10% 0% / 0% 50% 50% 0%;
+    overflow: hidden;
+}
+
+#profile-img-container img {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%
+}
+
+.chat-item h1 {
+    color: var(--color-primary-1);
+}
+
+.menu-btn {
+    margin-right: var(--margin-small);
+}
+
+#buy-premium-text {
+    color: white;
+}

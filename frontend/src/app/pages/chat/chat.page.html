@@ -1,9 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>chat</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <section class=" spacer1 layer3">
+    <h1 class="title-first top-title">Your Chats</h1>
+    <ul id="chat-list" *ngIf="getIsLoaded()">
+      <ng-container *ngFor="let chat of getChats();let i = index">
+        <li class="chat-item">
+          <div id="profile-img-container">
+            <img *ngIf="getProfilePicture(i).length>4" src="https://bouba.io/api/uploads/{{getProfilePicture(i)}}"
+              alt="profile" onerror="this.onerror=null;this.src='./assets/imgs/settings/profile-blank.png';" />
+          </div>
+          <h1>{{chat.partnerNickname}}</h1>
+          <button class="menu-btn">
+            <h1>
+              <fa-icon [icon]="menuIcon"></fa-icon>
+            </h1>
+          </button>
+        </li>
+      </ng-container>
+    </ul>
+    <span id="buy-premium-text">{{getBuyPremiumText()}}</span>
+  </section>
 </ion-content>
