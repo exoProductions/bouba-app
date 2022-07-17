@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ChatMembers } from '../models/chat-members';
 import { Mentee } from '../models/mentee';
 import { Peer } from '../models/peer';
 import { Userdata } from '../models/userdata';
@@ -32,4 +33,13 @@ export class ApiService {
   updateUserdata(userdata:Userdata): Observable<boolean> {
     return this.httpClient.post<boolean>(`${this.server}/api/updateUserdata.php`,userdata);
   }
+
+  addChat(nickname:string,peerName:string,isMentee:boolean): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${this.server}/api/addChat.php`,{nickname:nickname,peerName:peerName,isMentee:isMentee});
+  }
+
+  loadChats(nickname:string,password:string,isMentee:boolean): Observable<ChatMembers[]> {
+    return this.httpClient.post<ChatMembers[]>(`${this.server}/api/loadChats.php`,{nickname:nickname,password:password,isMentee:isMentee});
+  }
+
 }

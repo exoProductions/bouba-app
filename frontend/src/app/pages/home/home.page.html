@@ -1,6 +1,12 @@
 <ion-content>
+    <button class="go-left-btn" (click)="nextSlide(false)">
+        <h1><fa-icon [icon]="leftIcon"></fa-icon></h1>
+    </button>
+    <button class="go-right-btn" (click)="nextSlide(true)">
+        <h1><fa-icon [icon]="rightIcon"></fa-icon></h1>
+    </button>
     <section class=" spacer1 layer2">
-        <swiper [config]="config" *ngIf="getIsMentee()">
+        <swiper #swiper [config]="config" *ngIf="getIsMentee()">
             <ng-container *ngFor="let peer of getPeerList();let i = index">
                 <ng-template swiperSlide>
                     <div class="slider-page">
@@ -10,6 +16,9 @@
                                     src="https://bouba.io/api/uploads/{{getProfilePicture(i)}}" alt="profile" />
                             </div>
                             <ul class="userdata-list">
+                                <li>
+                                    <h1 class="title-first">{{peer.nickname}}</h1>
+                                </li>
                                 <li>
                                     <h1 class="title-second">Age</h1>
                                     <span class="text">{{peer.age}} years</span>
@@ -27,7 +36,7 @@
                                     <span class="text">{{peer.description}}</span>
                                 </li>
                             </ul>
-                            <button class="chat-btn">
+                            <button class="chat-btn" (click)="addChat(i)">
                                 <h1><fa-icon [icon]="chatIcon"></fa-icon></h1>
                                 <span>Chat Now</span>
                             </button>

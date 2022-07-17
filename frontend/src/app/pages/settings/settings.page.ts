@@ -46,7 +46,6 @@ export class SettingsPage implements OnInit {
         this.userdata = JSON.parse(JSON.stringify(this.initService.userdata));
       }
     }, 1000);
-    console.log(this.userdata);
     this.navigationService.showNavFade = true;
   }
 
