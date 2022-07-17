@@ -62,6 +62,7 @@ $pic-size: 110px;
 
 .chat-item h1 {
     color: var(--color-primary-1);
+    cursor: default;
 }
 
 .menu-btn {
@@ -71,3 +72,4 @@ $pic-size: 110px;
 #buy-premium-text {
     color: white;
 }
+

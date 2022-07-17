@@ -1,3 +1,12 @@
-<section id="chat-view">
-
+<section id="chat-view" >
+  <section id="chat-head">
+    <button (click)="goBack()">
+      <h1>
+        <fa-icon [icon]="backIcon"></fa-icon>
+      </h1>
+    </button>
+    <h2>{{getPartnerName()}}</h2>
+  </section>
+  <section id="chat-body"></section>
+  <section id="chat-type"> </section>
 </section>

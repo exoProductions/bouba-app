@@ -14,7 +14,7 @@ export class ChatService {
 
   homeSelectedChatInd: number = 0;
   chatSelectedChatInd:number=0;
-  chatIsOpen:boolean=false;
+  chatIsOpen:boolean=true;//todo has to be false
   chatMenuIsOpen:boolean=false;
 
   chats: ChatMembers[] = [];
@@ -65,6 +65,7 @@ export class ChatService {
   }
 
   loadChatPage(nickname: string, password: string, isMentee: boolean): void {
+    this.chats=[];
     this.apiService.loadChats(nickname, password, isMentee).subscribe((chatMembers: ChatMembers[]) => {
       if(chatMembers !=undefined){
         chatMembers.length > 0 && chatMembers != null ? this.chats = chatMembers : this.chats = [];

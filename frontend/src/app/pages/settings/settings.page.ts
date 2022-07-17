@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faPen, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Userdata } from 'src/app/models/userdata';
 import { ApiService } from 'src/app/services/api.service';
+import { ChatService } from 'src/app/services/chat.service';
 import { InitService } from 'src/app/services/init.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 
@@ -37,7 +38,7 @@ export class SettingsPage implements OnInit {
 
   showWorked: boolean = false;
 
-  constructor(private apiService: ApiService, private initService: InitService, private navigationService: NavigationService) { }
+  constructor(private apiService: ApiService,private chatService:ChatService, private initService: InitService, private navigationService: NavigationService) { }
 
   ngOnInit() {
     this.navigationService.currentPageInd = 3;
@@ -126,6 +127,7 @@ export class SettingsPage implements OnInit {
         this.userdata.nicknameChanged = true;
         console.log(this.userdata.oldNickname);
       }
+
       console.log(this.userdata.nicknameChanged);
       this.apiService.updateUserdata(this.userdata).subscribe((worked: boolean) => {
         if (worked) {
@@ -135,6 +137,7 @@ export class SettingsPage implements OnInit {
           this.initService.setUserdataLocal();
           this.showWorked = true;
           this.initService.loadPeersAndMentees();
+          this.chatService.loadChatPage(this.initService.userdata.nickname,this.initService.userdata.password,this.initService.userdata.isMentee);
           setTimeout(() => {
             this.showWorked = false;
           }, 2000);

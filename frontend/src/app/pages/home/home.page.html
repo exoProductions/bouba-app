@@ -7,12 +7,16 @@
     </button>
 
     <section class="spacer1 layer2">
-        <div id="empty-container" *ngIf="!getShowButtons()">
-            <h1>
-                Sorry, currently no helpers are available. The best time to enjoy a good book, have a look at our News feed!
+        <div class="empty-container" *ngIf="!getShowButtons()">
+            <h1 *ngIf="getIsMentee()">
+                Sorry, currently no helpers are available.<br><br>The best time to enjoy a good book, so have a look at our News feed!
             </h1>
-            <a>
+            <h1 *ngIf="!getIsMentee()">
+                Currently the world is in perfect balance and nobody needs your help.<br><br>The best time to enjoy a good book, so have a look at our News feed!
+            </h1>
+            <a [routerLink]="['/News']">
                 <h1> <fa-icon [icon]="newsIcon"></fa-icon></h1>
+                <span>News Feed</span>
             </a>
         </div>
         <swiper #swiper [config]="config" *ngIf="getIsMentee()">
