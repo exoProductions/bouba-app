@@ -19,7 +19,19 @@ export class ChatPage implements OnInit {
 
   ngOnInit() {
     this.navigationService.currentPageInd=0;
-    this.navigationService.showNavFade=true
+    this.navigationService.showNavFade=true;
+    console.log(this.initService.userdata);
+    //this.chatService.loadChatPage(this.initService.userdata.nickname,this.initService.userdata.password,this.initService.userdata.isMentee);
+  }
+
+  openChat(ind:number):void{
+    this.chatService.chatSelectedChatInd=ind;
+    this.chatService.chatIsOpen=true;
+    this.navigationService.showNav=false
+  }
+  openMenu(ind:number):void{
+    this.chatService.chatSelectedChatInd=ind;
+    this.chatService.chatMenuIsOpen=true;
   }
 
   getChats():ChatMembers[]{
@@ -33,14 +45,21 @@ export class ChatPage implements OnInit {
   }
   getProfilePicture(ind: number): string {
     if (this.getIsMentee()) {
-      return this.peerMenteeService.peerList[ind].firstNickname + ".jpg";
+      return this.chatService.chats[ind].firstNicknamePeer + ".jpg";
     }else{
-      console.log(this.peerMenteeService.menteeList[ind].firstNickname);
-      return this.peerMenteeService.menteeList[ind].firstNickname + ".jpg";
+      return this.chatService.chats[ind].firstNicknameMentee + ".jpg";
     }
   }
 
   getBuyPremiumText():string{
     return this.chatService.toMuchChatsText;
   }
+
+  getChatIsOpen():boolean{
+    return this.chatService.chatIsOpen;
+  }
+  getChatMenuIsOpen():boolean{
+    return this.chatService.chatMenuIsOpen;
+  }
+
 }

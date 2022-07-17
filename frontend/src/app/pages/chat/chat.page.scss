@@ -8,11 +8,11 @@
 
 .top-title {
     margin-top: var(--margin);
-    margin-bottom: var(--margin);
+    margin-bottom: var(--margin-smaller);
 }
 
 #chat-list {
-    margin-bottom: var(--margin);
+    margin-bottom: var(--margin-smaller);
     width: 100%;
 }
 
@@ -30,6 +30,7 @@ $pic-size: 110px;
     justify-content: space-between;
     transform: scale(1);
     transition: 0.3s transform;
+    margin: var(--margin-small) 0px;
 }
 
 .chat-item:hover {

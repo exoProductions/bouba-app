@@ -40,13 +40,19 @@ if (isset($postdata) && !empty($postdata)) {
     while ($row = mysqli_fetch_assoc($qry)) {
         if (password_verify($password_post, $row["password"])) {
 
-            $sql2 = "SELECT nickname,firstNickname,preferedPeer,description FROM bouba_userdata_tbl WHERE isMentee = true";
+            $sql2 = "SELECT menteeNickname FROM bouba_chat_tbl WHERE peerNickname = '{$nickname_post}'";
             $qry2 = mysqli_query($con, $sql2);
         
-            $ind=0;
             while ($row2 = mysqli_fetch_assoc($qry2)) {
-                addMentee($row2,$ind);
-                $ind++;
+                $menteeNickname=$row2['menteeNickname'];
+                $sql3 = "SELECT nickname,firstNickname,preferedPeer,description FROM bouba_userdata_tbl WHERE nickname='{$menteeNickname}'";
+                $qry3 = mysqli_query($con, $sql3);
+                
+                $ind=0;
+                while ($row3 = mysqli_fetch_assoc($qry3)) {
+                    addMentee($row3,$ind);
+                    $ind++;
+                }
             }
             echo json_encode($allMentees);
 

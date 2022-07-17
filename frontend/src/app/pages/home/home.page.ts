@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { faChevronLeft, faChevronRight, faComments } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faComments, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { Mentee } from 'src/app/models/mentee';
 import { Peer } from 'src/app/models/peer';
 import { ChatService } from 'src/app/services/chat.service';
@@ -30,6 +30,7 @@ export class HomePage implements OnInit {
   chatIcon = faComments;
   rightIcon=faChevronRight;
   leftIcon=faChevronLeft;
+  newsIcon=faNewspaper;
 
   constructor(private chatService:ChatService,private navigationService: NavigationService, private initService: InitService, private peerMenteeService: PeerMenteeService,private router:Router) { }
 
@@ -39,7 +40,7 @@ export class HomePage implements OnInit {
     this.navigationService.showNavFade=true;
   }
   addChat(ind:number):void{
-      this.chatService.addChat(ind,this.initService.userdata.nickname,this.initService.userdata.password,this.initService.userdata.isMentee,);
+      this.chatService.addChat(ind,this.initService.userdata.nickname,this.initService.userdata.firstNickname,this.initService.userdata.password,this.initService.userdata.isMentee,);
   }
 
   nextSlide(next:boolean):void{
@@ -63,8 +64,25 @@ export class HomePage implements OnInit {
     if (this.getIsMentee()) {
       return this.peerMenteeService.peerList[ind].firstNickname + ".jpg";
     }else{
-      console.log(this.peerMenteeService.menteeList[ind].firstNickname);
       return this.peerMenteeService.menteeList[ind].firstNickname + ".jpg";
+    }
+  }
+
+  getShowButtons():boolean{
+    if(this.initService.chatsAreLoaded){
+      if(this.getIsMentee()){
+        if(this.getPeerList().length==0){
+          return false;
+        }else{
+          return true;
+        }
+      }else{
+        if(this.getMenteeList().length==0){
+          return false;
+        }else{
+          return true;
+        }
+      }
     }
   }
 

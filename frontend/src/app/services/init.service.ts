@@ -22,7 +22,7 @@ export class InitService {
     description: "",
     preferedPeers: "1",
     isMentee: true,
-    age: 0,
+    age: 23,
     gender: "Male",
     language: "Deutsch",
   }
@@ -59,11 +59,13 @@ export class InitService {
   }
 
   loadUserdata(): void {
-    this.chatService.loadChatPage(this.userdata.nickname, this.userdata.password, this.userdata.isMentee);
     this.apiService.loadUserdata(this.userdata.nickname, this.userdata.password).subscribe((userdata: Userdata) => {
       this.userdata = userdata;
       console.log(this.userdata);
+
       this.loadPeersAndMentees();
+      this.chatService.loadChatPage(this.userdata.nickname, this.userdata.password, this.userdata.isMentee);
+
       this.homeIsLoaded = true;
     });
   }
@@ -71,12 +73,18 @@ export class InitService {
     if (this.userdata.isMentee) {
       this.apiService.loadPeers(this.userdata.nickname, this.userdata.password).subscribe((peers: Peer[]) => {
         this.peerMenteeService.peerList = peers;
+        if(this.peerMenteeService.peerList==undefined || this.peerMenteeService.peerList==null){
+          this.peerMenteeService.peerList=[];
+        }
         console.log(this.peerMenteeService.peerList);
         this.chatsAreLoaded=true;
       });
     } else {
       this.apiService.loadMentees(this.userdata.nickname, this.userdata.password).subscribe((mentees: Mentee[]) => {
         this.peerMenteeService.menteeList = mentees;
+        if(this.peerMenteeService.menteeList==undefined || this.peerMenteeService.menteeList == null){
+          this.peerMenteeService.menteeList=[];
+        }
         console.log(this.peerMenteeService.menteeList);
         this.chatsAreLoaded=true;
       });
@@ -91,5 +99,4 @@ export class InitService {
     this.storageService.addData(1, "password", this.userdata.password) //has to be false
     console.log("safed");
   }
-
 }

@@ -34,11 +34,13 @@ export class ApiService {
     return this.httpClient.post<boolean>(`${this.server}/api/updateUserdata.php`,userdata);
   }
 
-  addChat(nickname:string,peerName:string,isMentee:boolean): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${this.server}/api/addChat.php`,{nickname:nickname,peerName:peerName,isMentee:isMentee});
+  addChat(menteeNickname:string,peerNickname:string,firstNicknameMentee:string, firstNicknamePeer:string,isMentee:boolean): Observable<boolean> {
+    console.log(firstNicknameMentee,firstNicknamePeer);
+    return this.httpClient.post<boolean>(`${this.server}/api/addChat.php`,{menteeNickname:menteeNickname,peerNickname:peerNickname,firstNicknameMentee:firstNicknameMentee,firstNicknamePeer:firstNicknamePeer,isMentee:isMentee});
   }
 
   loadChats(nickname:string,password:string,isMentee:boolean): Observable<ChatMembers[]> {
+    console.log(nickname,isMentee);
     return this.httpClient.post<ChatMembers[]>(`${this.server}/api/loadChats.php`,{nickname:nickname,password:password,isMentee:isMentee});
   }
 

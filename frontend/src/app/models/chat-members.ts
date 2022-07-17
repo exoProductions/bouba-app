@@ -1,4 +1,7 @@
 export class ChatMembers {
-    nickname:string;
-    partnerNickname:string;
+    menteeNickname:string;
+    peerNickname:string;
+    firstNicknameMentee:string;
+    firstNicknamePeer:string;
+
 }

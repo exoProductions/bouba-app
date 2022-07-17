@@ -3,13 +3,15 @@ require 'database.php';
 
 $allChats;
 
-function addChat($row,$nickname, $ind)
+function addChat($row, $ind)
 {
     global $allChats;
 
     $chat = [
-        'nickname' =>$nickname,
-        'partnerNickname' => $row["partnerNickname"],
+        'menteeNickname' =>$row["menteeNickname"],
+        'peerNickname' => $row["peerNickname"],
+        'firstNicknameMentee' =>$row["firstNicknameMentee"],
+        'firstNicknamePeer' =>$row["firstNicknamePeer"],
     ];
     $allChats[$ind] = $chat;
 }
@@ -37,13 +39,17 @@ if (isset($postdata) && !empty($postdata)) {
 
     while ($row = mysqli_fetch_assoc($qry)) {
         if (password_verify($password_post, $row["password"])) {
-
-            $sql2 = "SELECT partnerNickname FROM bouba_chat_tbl WHERE nickname = '{$nickname_post}' AND isMentee = '{$isMentee_post}'";
+            
+            if($isMentee_post){
+                $sql2 = "SELECT menteeNickname,peerNickname,firstNicknameMentee,firstNicknamePeer FROM bouba_chat_tbl WHERE menteeNickname = '{$nickname_post}'";
+            }else{
+                $sql2 = "SELECT menteeNickname,peerNickname,firstNicknameMentee,firstNicknamePeer FROM bouba_chat_tbl WHERE peerNickname = '{$nickname_post}' AND accepted=1";
+            }
             $qry2 = mysqli_query($con, $sql2);
         
             $ind=0;
             while ($row2 = mysqli_fetch_assoc($qry2)) {
-                addChat($row2,$nickname_post,$ind);
+                addChat($row2,$ind);
                 $ind++;
             }
             echo json_encode($allChats);

@@ -8,6 +8,8 @@ import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ChatViewComponent } from './chat-view/chat-view.component';
+import { ChatMenuComponent } from './chat-menu/chat-menu.component';
 
 @NgModule({
   imports: [
@@ -17,6 +19,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ChatPageRoutingModule,
     FontAwesomeModule,
   ],
-  declarations: [ChatPage]
+  declarations: [
+    ChatPage,
+    ChatViewComponent,
+    ChatMenuComponent,
+  ]
 })
 export class ChatPageModule {}
