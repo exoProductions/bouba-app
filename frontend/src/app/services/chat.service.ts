@@ -16,7 +16,7 @@ export class ChatService {
 
   homeSelectedChatInd: number = 0;
   chatSelectedChatInd: number = 0;
-  chatIsOpen: boolean = true;//todo has to be false
+  chatIsOpen: boolean = false;//todo has to be false
   chatMenuIsOpen: boolean = false;
 
   chats: ChatMembers[] = [];

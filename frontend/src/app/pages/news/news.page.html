@@ -1,9 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>news</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <section id="news-section">
+    <ul id="news-list">
+      <li class="card large first">
+        <div class="color-overlay">
+          <h1 class="title-second">Learn more with our</h1>
+          <h1 class="title-first">News Feed</h1>
+        </div>
+      </li>
+      <ng-container *ngFor="let news of getNews();let i = index">
+        <li [ngClass]="news.isLarge? 'card large' : 'card small'" (click)="openNews(i)">
+          <div class="color-overlay">
+            <div class="text-container">
+              <h2>
+                {{news.title}}
+              </h2>
+              <span>
+                {{news.subTitle}}
+              </span>
+            </div>
+            <button class="more-block" >
+              <span>More</span>
+              <h3>
+                <fa-icon [icon]="rightIcon"></fa-icon>
+              </h3>
+            </button>
+          </div>
+        </li>
+      </ng-container>
+      <li class="spacer-bottom"></li>
+    </ul>
+  </section>
 </ion-content>

@@ -1,0 +1,122 @@
+#news-section {
+  padding: var(--padding-smallest);
+  max-height: 100vh;
+  overflow: auto;
+}
+
+#news-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+}
+
+.card {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: var(--std-border-rad);
+  margin: var(--margin-smallest);
+  box-shadow: 0px 0px 30px rgba(black, 0.5);
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.card .color-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: rgba(rgb(0, 0, 0), 0.6);
+  min-height: 150px;
+  height: 100%;
+  padding: var(--padding-small);
+}
+
+.card.first .color-overlay {
+  align-items: center;
+  justify-content: center;
+}
+
+.card.first .title-first {
+  font-size: var(--fontsize-title);
+}
+
+.card.large {
+  width: 100%;
+}
+
+.card h2 {
+  color: white;
+    margin-bottom: var(--margin-smaller);
+}
+
+.card span {
+  color: white;
+}
+
+.card.small {
+  width: calc((100% / 2) - var(--margin-smallest) * 2);
+}
+
+.card:nth-child(1) {
+  background-image: url("../../../assets/imgs/news/news0.jpg");
+}
+
+.card:nth-child(2) {
+  background-image: url("../../../assets/imgs/news/news1.jpg");
+  animation: scaleItem 8s 1s infinite;
+}
+
+.card:nth-child(3) {
+  background-image: url("../../../assets/imgs/news/news2.jpg");
+  animation: scaleItem 8s 2.5s infinite;
+}
+
+.card:nth-child(4) {
+  background-image: url("../../../assets/imgs/news/news3.jpg");
+  animation: scaleItem 8s 5s infinite;
+
+}
+
+.card:nth-child(5) {
+  background-image: url("../../../assets/imgs/news/news4.jpg");
+  animation: scaleItem 8s 6.5s infinite;
+}
+
+.card:nth-child(6) {
+  background-image: url("../../../assets/imgs/news/news5.jpg");
+  animation: scaleItem 8s 8s infinite;
+}
+
+.more-block {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.more-block h3,
+.more-block span {
+  color: var(--color-primary-1);
+}
+.more-block h3{
+    margin-left:var(--margin-smaller);
+}
+.spacer-bottom {
+  height: calc(var(--navbar-height) * 1.5);
+}
+
+
+@keyframes scaleItem {
+ 0%,20%,100%{
+    transform: scale(1);
+ }
+ 10%{
+    transform: scale(1.05);
+ }
+ 
+}

@@ -7,6 +7,6 @@ export class NavigationService {
   pages:string[]=["Chat","Home","News","Settings"]
   currentPageInd:number=0;
   showNavFade:boolean=false;
-  showNav:boolean=false;//todo has to be true
+  showNav:boolean=true;//todo has to be true
   constructor() { }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faHome } from '@fortawesome/free-solid-svg-icons';
 import { ChatMembers } from 'src/app/models/chat-members';
 import { ChatService } from 'src/app/services/chat.service';
 import { InitService } from 'src/app/services/init.service';
@@ -14,7 +14,8 @@ import { PeerMenteeService } from 'src/app/services/peer-mentee.service';
 export class ChatPage implements OnInit {
 
   menuIcon=faEllipsisV;
-
+  homeIcon=faHome;
+  
   constructor(private chatService:ChatService,private peerMenteeService:PeerMenteeService,private initService:InitService,private navigationService:NavigationService) { }
 
   ngOnInit() {

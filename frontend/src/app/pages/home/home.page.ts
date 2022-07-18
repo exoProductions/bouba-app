@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { faChevronLeft, faChevronRight, faComments, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { Mentee } from 'src/app/models/mentee';
@@ -15,7 +15,7 @@ import { SwiperComponent } from 'swiper/angular';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit,AfterViewChecked {
 
   @ViewChild('swiper', { static: false }) swiper!: SwiperComponent;
   @ViewChild('swiper2', { static: false }) swiper2!: SwiperComponent;
@@ -33,6 +33,9 @@ export class HomePage implements OnInit {
   newsIcon=faNewspaper;
 
   constructor(private chatService:ChatService,private navigationService: NavigationService, private initService: InitService, private peerMenteeService: PeerMenteeService,private router:Router) { }
+  ngAfterViewChecked(): void {
+    this.navigationService.currentPageInd = 1;
+  }
 
   ngOnInit() {
     Swiper.use([Pagination]);

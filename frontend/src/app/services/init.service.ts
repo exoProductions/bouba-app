@@ -5,6 +5,7 @@ import { Peer } from '../models/peer';
 import { Userdata } from '../models/userdata';
 import { ApiService } from './api.service';
 import { ChatService } from './chat.service';
+import { NewsService } from './news.service';
 import { PeerMenteeService } from './peer-mentee.service';
 import { StorageService } from './storage.service';
 
@@ -28,10 +29,10 @@ export class InitService {
   }
 
   isFirstTime: boolean = false;
-  homeIsLoaded: boolean = true; //has to be false
+  homeIsLoaded: boolean = false; //has to be false
   chatsAreLoaded:boolean=false;
   
-  constructor(private storageService: StorageService, private apiService: ApiService, private chatService: ChatService, private peerMenteeService: PeerMenteeService, private router: Router) {
+  constructor(private storageService: StorageService, private apiService: ApiService, private chatService: ChatService,private newsService:NewsService, private peerMenteeService: PeerMenteeService, private router: Router) {
     this.initHome();
     setTimeout(() => {
       //this.storageService.addData(0, "bla", "bli") //has to be false
@@ -51,7 +52,7 @@ export class InitService {
           if (this.userdata.password.length != 0) {
             this.loadUserdata();
           } else {
-            this.isFirstTime = true;
+            this.isFirstTime = true;//tod uncomment
             this.router.navigate(["./First-time"]); //todo uncomment
           }
         });
@@ -63,10 +64,9 @@ export class InitService {
     this.apiService.loadUserdata(this.userdata.nickname, this.userdata.password).subscribe((userdata: Userdata) => {
       this.userdata = userdata;
       console.log(this.userdata);
-
       this.loadPeersAndMentees();
       this.chatService.loadChatPage(this.userdata.nickname, this.userdata.password, this.userdata.isMentee);
-
+      this.newsService.loadNews(userdata);
       this.homeIsLoaded = true;
     });
   }
