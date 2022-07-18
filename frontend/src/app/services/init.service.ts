@@ -30,6 +30,7 @@ export class InitService {
   isFirstTime: boolean = false;
   homeIsLoaded: boolean = true; //has to be false
   chatsAreLoaded:boolean=false;
+  
   constructor(private storageService: StorageService, private apiService: ApiService, private chatService: ChatService, private peerMenteeService: PeerMenteeService, private router: Router) {
     this.initHome();
     setTimeout(() => {

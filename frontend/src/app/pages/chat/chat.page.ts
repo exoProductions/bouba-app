@@ -21,14 +21,15 @@ export class ChatPage implements OnInit {
     this.navigationService.currentPageInd=0;
     this.navigationService.showNavFade=true;
     console.log(this.initService.userdata);
-    //this.chatService.loadChatPage(this.initService.userdata.nickname,this.initService.userdata.password,this.initService.userdata.isMentee);
   }
 
   openChat(ind:number):void{
     this.chatService.chatSelectedChatInd=ind;
     this.chatService.chatIsOpen=true;
-    this.navigationService.showNav=false
+    this.navigationService.showNav=false;
+    this.chatService.loadMessages(this.initService.userdata);
   }
+
   openMenu(ind:number):void{
     this.chatService.chatSelectedChatInd=ind;
     this.chatService.chatMenuIsOpen=true;

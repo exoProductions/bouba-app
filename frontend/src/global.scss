@@ -244,6 +244,13 @@ ion-content {
   background-position: center;
   background-size: cover;
 }
+.spacer2 {
+  aspect-ratio: 100/50;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position:top;
+  background-size: cover;
+}
 
 .layer1 {
   background-image: url("./assets/svgs/card.svg");
@@ -257,7 +264,12 @@ ion-content {
 .layer4 {
   background-image: url("./assets/svgs/background-2.svg");
 }
-
+.layer4 {
+  background-image: url("./assets/svgs/background-2.svg");
+}
+.layer5 {
+  background-image: url("./assets/svgs/circle.svg");
+}
 //animations--------------------------------
 
 //flex----------------------------

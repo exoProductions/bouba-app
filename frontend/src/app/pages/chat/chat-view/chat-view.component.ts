@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { faChevronLeft, faLocationArrow, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { Message } from 'src/app/models/message';
 import { ApiService } from 'src/app/services/api.service';
 import { ChatService } from 'src/app/services/chat.service';
 import { InitService } from 'src/app/services/init.service';
@@ -12,30 +13,95 @@ import { NavigationService } from 'src/app/services/navigation.service';
 })
 export class ChatViewComponent implements OnInit {
 
-  backIcon=faChevronLeft;
+  @ViewChild('chatContainer') private chatContainer: ElementRef;
 
-  constructor(private navigationService:NavigationService,private initService:InitService,private apiService:ApiService,private chatService:ChatService) { }
+  message: string = "";
+  backIcon = faChevronLeft;
+  sendIcon = faLocationArrow;
 
-  ngOnInit() {}
+  scrolledOnce:boolean=false;
 
-  goBack():void{
-    this.navigationService.showNav=true;
-    this.chatService.chatIsOpen=false;
+  constructor(private navigationService: NavigationService, private initService: InitService, private apiService: ApiService, private chatService: ChatService) { }
+
+  ngOnInit() {
+    this.chatService.chatMessages=[];
+    this.poll();
   }
-  getIsMentee():boolean{
+
+  poll(): void {
+    if (this.chatService.chatIsOpen) {
+      setTimeout(() => {
+       
+        this.chatService.loadMessages(this.initService.userdata);
+        if(!this.scrolledOnce && this.chatService.messagesAreLoaded){
+          this.scrollToBottom();
+          this.scrolledOnce=true;
+          console.log("naöksdfjöaksdfja sdkf");
+        }
+        this.poll();
+      }, 2000);
+    }
+  }
+
+  goBack(): void {
+    this.navigationService.showNav = true;
+    this.chatService.chatIsOpen = false;
+  }
+
+  sendMessage(): void {
+    this.chatService.sendMessage(this.initService.userdata, this.message);
+    this.message = "";
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
+
+  getIsMentee(): boolean {
     return this.initService.userdata.isMentee;
   }
 
-  getIsLoaded():boolean{
-    return this.initService.chatsAreLoaded;
+  getIsLoaded(): boolean {
+    return this.chatService.chatsAreLoaded;
   }
 
-  getPartnerName():string{
-    if(this.getIsMentee()){
+  getMessages(): Message[] {
+    return this.chatService.chatMessages;
+  }
+
+  getPartnerName(): string {
+    if (this.getIsMentee()) {
       return this.chatService.chats[this.chatService.chatSelectedChatInd].peerNickname
-    }else{
+    } else {
       return this.chatService.chats[this.chatService.chatSelectedChatInd].menteeNickname;
     }
+  }
+
+  getIsRight(message: Message): boolean {
+    let isRight: boolean = false;
+    if (this.getIsMentee()) {
+      if (message.isFromMentee) {
+        isRight = true;
+      }
+    } else {
+      if (!message.isFromMentee) {
+        isRight = true;
+      }
+    }
+    return isRight;
+  }
+  showSpacer(ind: number): boolean {
+    let show: boolean = false;
+    if (ind == 0) {
+      show = true;
+    } else {
+      if ((this.getMessages()[ind].isFromMentee && !this.getMessages()[ind - 1].isFromMentee) || (!this.getMessages()[ind].isFromMentee && this.getMessages()[ind - 1].isFromMentee)) {
+        return true;
+      }
+    }
+    return show;
   }
 
 }

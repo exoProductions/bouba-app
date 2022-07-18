@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChatMembers } from '../models/chat-members';
 import { Mentee } from '../models/mentee';
+import { Message } from '../models/message';
 import { Peer } from '../models/peer';
 import { Userdata } from '../models/userdata';
 
@@ -42,6 +43,13 @@ export class ApiService {
   loadChats(nickname:string,password:string,isMentee:boolean): Observable<ChatMembers[]> {
     console.log(nickname,isMentee);
     return this.httpClient.post<ChatMembers[]>(`${this.server}/api/loadChats.php`,{nickname:nickname,password:password,isMentee:isMentee});
+  }
+
+  loadMessages(menteeNickname:string,peerNickname:string,password:string,isMentee:boolean): Observable<Message[]> {
+    return this.httpClient.post<Message[]>(`${this.server}/api/loadMessages.php`,{menteeNickname:menteeNickname,peerNickname:peerNickname,password:password,isMentee:isMentee});
+  }
+  sendMessage(menteeNickname:string,peerNickname:string,password:string,message:string,isMentee:boolean): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${this.server}/api/sendMessage.php`,{menteeNickname:menteeNickname,peerNickname:peerNickname,password:password,message:message,isMentee:isMentee});
   }
 
 }
