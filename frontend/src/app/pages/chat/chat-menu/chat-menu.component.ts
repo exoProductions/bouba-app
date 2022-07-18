@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCross, faTrashAlt, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-chat-menu',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatMenuComponent implements OnInit {
 
+  deleteIcon=faTrashAlt;
+  closeIcon=faXmark;
   constructor() { }
 
   ngOnInit() {}

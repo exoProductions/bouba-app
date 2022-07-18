@@ -15,7 +15,7 @@ export class ChatPage implements OnInit {
 
   menuIcon=faEllipsisV;
   homeIcon=faHome;
-  
+
   constructor(private chatService:ChatService,private peerMenteeService:PeerMenteeService,private initService:InitService,private navigationService:NavigationService) { }
 
   ngOnInit() {
@@ -34,6 +34,11 @@ export class ChatPage implements OnInit {
   openMenu(ind:number):void{
     this.chatService.chatSelectedChatInd=ind;
     this.chatService.chatMenuIsOpen=true;
+    this.navigationService.showNav=false;
+  }
+
+  openSOS():void{
+
   }
 
   getChats():ChatMembers[]{

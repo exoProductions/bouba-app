@@ -2,22 +2,27 @@
 
   <app-chat-view *ngIf="getChatIsOpen()"></app-chat-view>
   <app-chat-menu *ngIf="getChatMenuIsOpen()"></app-chat-menu>
-  
+
   <section class="spacer1 layer3">
     <h1 class="title-first top-title">Your Chats</h1>
-    <h1 class="title-second" *ngIf="getChats().length==0 && getIsLoaded()">Go to the Home Tab to find someone to chat with</h1>
+    <h1 class="title-second" *ngIf="getChats().length==0 && getIsLoaded()">Go to the Home Tab to find someone to chat
+      with</h1>
     <a class="home-btn" [routerLink]="['/Home']" *ngIf="getChats().length==0 && getIsLoaded()">
-      <h1><fa-icon [icon]="homeIcon"></fa-icon></h1>
+      <h1>
+        <fa-icon [icon]="homeIcon"></fa-icon>
+      </h1>
     </a>
     <ul id="chat-list" *ngIf="getIsLoaded()">
       <ng-container *ngFor="let chat of getChats();let i = index">
-        <li class="chat-item" (click)="openChat(i)">
-          <div id="profile-img-container">
+        <li class="chat-item" >
+          <div id="profile-img-container" (click)="openChat(i)">
             <img *ngIf="getProfilePicture(i).length>4" src="https://bouba.io/api/uploads/{{getProfilePicture(i)}}"
               alt="profile" onerror="this.onerror=null;this.src='./assets/imgs/settings/profile-blank.png';" />
           </div>
-          <h1 *ngIf="getIsMentee()" >{{chat.peerNickname}}</h1>
-          <h1 *ngIf="!getIsMentee()" >{{chat.menteeNickname}}</h1>
+         <div class="nickname-container" (click)="openChat(i)">
+          <h1 *ngIf="getIsMentee()">{{chat.peerNickname}}</h1>
+          <h1 *ngIf="!getIsMentee()">{{chat.menteeNickname}}</h1>
+         </div>
           <button class="menu-btn" (click)="openMenu(i)">
             <h1>
               <fa-icon [icon]="menuIcon"></fa-icon>
@@ -26,6 +31,9 @@
         </li>
       </ng-container>
     </ul>
+    <button class="sos-btn" (click)="openSOS()">
+      <h2>SOS</h2>
+    </button>
     <span id="buy-premium-text">{{getBuyPremiumText()}}</span>
   </section>
 </ion-content>
