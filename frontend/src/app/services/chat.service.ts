@@ -137,7 +137,7 @@ export class ChatService {
 
   deleteChat( userdata: Userdata): void {
     let ind=this.chatSelectedChatInd;
-    this.apiService.deleteChat(this.chats[ind].menteeNickname, this.chats[ind].peerNickname).subscribe((worked: boolean) => {
+    this.apiService.deleteChat(this.chats[ind].menteeNickname, this.chats[ind].peerNickname,userdata.isMentee).subscribe((worked: boolean) => {
       console.log(worked);
       this.deleteChatWorked=true;
       setTimeout(()=>{

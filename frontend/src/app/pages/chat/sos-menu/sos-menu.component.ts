@@ -13,20 +13,28 @@ export class SosMenuComponent implements OnInit {
 
   closeIcon=faXmark;
 
-  problems:string[]=[
+  problemsMentee:string[]=[
     "Feeling totaly empty",
     "returning thoughts of suizide and death",
     "Insomnia/sleep disturbance",
     "Other",
   ];
+  problemsPeer:string[]=[
+    "My mentee needs professional help",
+    "Other",
+  ];
   selectedProblemInd:number=0;
 
-  constructor(private chatService:ChatService,private navigationService:NavigationService) { }
+  constructor(private chatService:ChatService,private initService:InitService,private navigationService:NavigationService) { }
 
   ngOnInit() {}
 
   close():void{
     this.chatService.sosMenuIsOpen=false;
     this.navigationService.showNav=true;
+  }
+
+  getProblems():string[]{
+    return this.initService.userdata.isMentee? this.problemsMentee:this.problemsPeer;
   }
 }

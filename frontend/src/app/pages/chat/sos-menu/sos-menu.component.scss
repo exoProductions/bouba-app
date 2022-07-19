@@ -44,9 +44,13 @@
   margin-top: var(--margin);
 }
 
+.explanation{
+  color: var(--color-primary-1);
+}
 .problem-list {
   display: flex;
   flex-direction: column;
+  margin-top: var(--margin);
 }
 
 .problem-item {
@@ -63,10 +67,12 @@
 
 
 .problem-item .radio-btn {
+  min-width: var(--btn-smaller);
+  min-height: var(--btn-smaller);
   width: var(--btn-smaller);
   height: var(--btn-smaller);
   border-radius: var(--btn-smaller);
-  border: solid 3px var(--color-light);
+  border: solid 3px var(--color-primary-1);
   background-color: white;
   margin-right: var(--margin-small);
 }

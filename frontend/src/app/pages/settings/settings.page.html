@@ -77,6 +77,14 @@
                 <span>I want to Help</span>
               </div>
             </div>
+            <button (click)="verifyPeer()" *ngIf="!userdata.isMentee" class="verify-btn">
+              <h2>Please verify your suitabiliy </h2>
+              <span>To guarantee a high security standart, every helper needs to verify his trustworthyness</span>
+              <h1>
+                <fa-icon [icon]="stampIcon"></fa-icon>
+                <fa-icon [icon]="verifyIcon"></fa-icon>
+              </h1>
+            </button>
             <span class="form-error-text">{{formErrorText}}</span>
             <input class="submit-input" type="submit" value="Save" (click)="update()" />
           </form>

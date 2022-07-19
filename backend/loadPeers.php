@@ -42,7 +42,7 @@ if (isset($postdata) && !empty($postdata)) {
     while ($row = mysqli_fetch_assoc($qry)) {
         if (password_verify($password_post, $row["password"])) {
 
-            $sql2 = "SELECT nickname,firstNickname,age,gender,language,description FROM bouba_userdata_tbl WHERE isMentee = false";
+            $sql2 = "SELECT nickname,firstNickname,age,gender,language,description FROM bouba_userdata_tbl WHERE isMentee = false AND verified=true";
             $qry2 = mysqli_query($con, $sql2);
 
             $ind = 0;

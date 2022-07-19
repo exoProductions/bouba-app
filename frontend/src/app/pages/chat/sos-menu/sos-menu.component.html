@@ -8,10 +8,12 @@
     <ul class="content-list">
       <li>
         <h1 class="title-second">You clicked the SOS button<br><br>
-          Please choose the answer that matches the problem best
         </h1>
+        <span class="explanation">
+          Please choose the answer that matches the problem best
+        </span>
         <ul class="problem-list">
-          <ng-container *ngFor="let  problem of problems;let i = index">
+          <ng-container *ngFor="let  problem of getProblems();let i = index">
             <li [ngClass]="selectedProblemInd==i? 'problem-item selected':'problem-item'"
               (click)="selectedProblemInd=i">
               <div class="radio-btn"></div>

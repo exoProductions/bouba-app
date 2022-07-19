@@ -2,6 +2,7 @@
   padding: var(--padding-smallest);
   max-height: 100vh;
   overflow: auto;
+  min-height: 100vh;
 }
 
 #news-list {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPen, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faPen, faStamp, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Userdata } from 'src/app/models/userdata';
 import { ApiService } from 'src/app/services/api.service';
 import { ChatService } from 'src/app/services/chat.service';
@@ -20,7 +20,9 @@ export class SettingsPage implements OnInit {
   showProfile: boolean = true;
 
   uploadIcon = faPen;
-
+  verifyIcon=faChevronRight;
+  stampIcon=faStamp;
+  
   userdata: Userdata = {
     nicknameChanged: false,
     oldNickname: "",
@@ -91,6 +93,10 @@ export class SettingsPage implements OnInit {
     }
   }
 
+  verifyPeer(){
+    window.open("https://www.verify.bouba.io", "_blank");
+  }
+
 
   getIsMentee(): boolean {
     return this.initService.userdata.isMentee;
@@ -109,6 +115,7 @@ export class SettingsPage implements OnInit {
           this.formErrorText = "";
           this.userdata.password="insecure";
           this.initService.setUserdataLocal();
+          this.update();
         } else {
           this.formErrorText = "This nickname already exists!";
         }

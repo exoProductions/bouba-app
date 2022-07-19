@@ -1,4 +1,5 @@
 
+
 .go-left-btn{
     position: absolute;
     z-index: 2;
@@ -13,6 +14,10 @@
     right: var(--margin-smaller);
     top: 45vh;
     color: white
+}
+
+.home-section{
+    max-height: 100vh;
 }
 
 .empty-container{

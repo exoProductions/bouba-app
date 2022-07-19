@@ -32,6 +32,7 @@ export class FirstTimePage implements OnInit {
     console.log(isMentee);
     this.initService.userdata.isMentee=isMentee;
     this.initService.isFirstTime=false;
+    this.initService.homeIsLoaded=true;
     this.router.navigate(["./Settings"]);
   }
 }

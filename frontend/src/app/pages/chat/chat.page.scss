@@ -80,7 +80,9 @@ $pic-size: 110px;
 }
 
 .menu-btn {
-    margin: 0px var(--margin-small);
+    //margin: 0px var(--margin-small);
+    width: var(--btn-medium);
+    height: 100%;
 }
 $btn-size:60px;
 .sos-btn{

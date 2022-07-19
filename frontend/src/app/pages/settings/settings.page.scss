@@ -108,6 +108,19 @@ textarea {
     margin-right: var(--margin-small);
     color: white;
 }
+
+.verify-btn{
+    margin: var(--margin-small) 0px;
+}
+.verify-btn h2,.verify-btn h1, .verify-btn span{
+    color: white;
+}
+.verify-btn h1{
+    margin-top: var(--margin-small);
+}
+.verify-btn h2{
+    margin-bottom: var(--margin-small);
+}
 .submit-input{
     margin-bottom: calc(var(--navbar-height) * 1.5);
 }
