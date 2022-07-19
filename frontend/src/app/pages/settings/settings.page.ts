@@ -22,7 +22,7 @@ export class SettingsPage implements OnInit {
   uploadIcon = faPen;
   verifyIcon=faChevronRight;
   stampIcon=faStamp;
-  
+
   userdata: Userdata = {
     nicknameChanged: false,
     oldNickname: "",
@@ -116,6 +116,7 @@ export class SettingsPage implements OnInit {
           this.userdata.password="insecure";
           this.initService.setUserdataLocal();
           this.update();
+          this.navigationService.showNav=true;
         } else {
           this.formErrorText = "This nickname already exists!";
         }

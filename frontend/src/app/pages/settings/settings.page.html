@@ -79,11 +79,11 @@
             </div>
             <button (click)="verifyPeer()" *ngIf="!userdata.isMentee" class="verify-btn">
               <h2>Please verify your suitabiliy </h2>
-              <span>To guarantee a high security standart, every helper needs to verify his trustworthyness</span>
-              <h1>
-                <fa-icon [icon]="stampIcon"></fa-icon>
-                <fa-icon [icon]="verifyIcon"></fa-icon>
-              </h1>
+              <span>To guarantee a high security standart, every helper needs to verify his trustworthyness (use the verify button below or go to verify.bouba.io)</span>
+              <h2 class="verify-btn-text">
+                Verify
+                  <fa-icon [icon]="verifyIcon"></fa-icon>
+              </h2>
             </button>
             <span class="form-error-text">{{formErrorText}}</span>
             <input class="submit-input" type="submit" value="Save" (click)="update()" />

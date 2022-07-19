@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "frontend",
+	"appId": "io.bouba.production",
+	"appName": "Bouba",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }
