@@ -38,7 +38,8 @@ export class ChatPage implements OnInit {
   }
 
   openSOS():void{
-
+    this.chatService.sosMenuIsOpen=true;
+    this.navigationService.showNav=false;
   }
 
   getChats():ChatMembers[]{
@@ -68,5 +69,7 @@ export class ChatPage implements OnInit {
   getChatMenuIsOpen():boolean{
     return this.chatService.chatMenuIsOpen;
   }
-
+  getSosMenuIsOpen():boolean{
+    return this.chatService.sosMenuIsOpen;
+  }
 }

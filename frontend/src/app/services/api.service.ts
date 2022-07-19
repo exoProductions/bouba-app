@@ -56,5 +56,7 @@ export class ApiService {
   loadNews(isMentee: boolean): Observable<News[]> {
     return this.httpClient.post<News[]>(`${this.server}/api/loadNews.php`, { isMentee: isMentee });
   }
-
+  deleteChat(menteeNickname: string, peerNickname: string): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${this.server}/api/deleteChat.php`, { menteeNickname: menteeNickname, peerNickname: peerNickname});
+  }
 }

@@ -2,7 +2,7 @@
 
   <app-chat-view *ngIf="getChatIsOpen()"></app-chat-view>
   <app-chat-menu *ngIf="getChatMenuIsOpen()"></app-chat-menu>
-
+  <app-sos-menu *ngIf="getSosMenuIsOpen()"></app-sos-menu>
   <section class="spacer1 layer3">
     <h1 class="title-first top-title">Your Chats</h1>
     <h1 class="title-second" *ngIf="getChats().length==0 && getIsLoaded()">Go to the Home Tab to find someone to chat

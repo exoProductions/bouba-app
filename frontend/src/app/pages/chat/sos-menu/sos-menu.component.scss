@@ -1,0 +1,88 @@
+#chat-section {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--padding-small);
+  backdrop-filter: blur(6px);
+  background-color: rgba(black, 0.4);
+}
+
+#content {
+  background-color: white;
+  min-height: 40vh;
+  position: relative;
+  border-radius: var(--std-border-rad);
+  box-shadow: 0px 0px 30px rgba(black, 0.4);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--padding-small);
+}
+
+.close-btn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: var(--padding-small);
+  color: var(--ion-color-danger);
+}
+
+
+.title-second {
+  text-align: left;
+  margin-bottom: var(--margin-small);
+  color: var(--color-primary-1);
+  margin-top: var(--margin);
+}
+
+.problem-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.problem-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: var(--margin-smaller);
+}
+
+.problem-item span {
+  color: var(--color-primary-1);
+}
+
+
+.problem-item .radio-btn {
+  width: var(--btn-smaller);
+  height: var(--btn-smaller);
+  border-radius: var(--btn-smaller);
+  border: solid 3px var(--color-light);
+  background-color: white;
+  margin-right: var(--margin-small);
+}
+
+.problem-item.selected .radio-btn {
+  background-color: var(--color-primary-1);
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--margin);
+}
+.round-button{
+    background-color: var(--ion-color-danger);
+}

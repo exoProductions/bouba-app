@@ -1,14 +1,22 @@
 <section id="chat-section">
   <section id="content">
-    <button>
-      <h1><fa-icon [icon]="closeIcon"></fa-icon></h1>
+    <button class="close-btn" (click)="close()">
+      <h1>
+        <fa-icon [icon]="closeIcon"></fa-icon>
+      </h1>
     </button>
     <ul>
-    <li>
-      <div>
-        <span>Delete Chat</span><h1><fa-icon [icon]="deleteIcon"></fa-icon></h1>
-      </div>
-    </li>
-  </ul>
+      <li>
+        <div class="delete-container">
+          <span (click)="wantToDelete=!wantToDelete">Delete Chat</span>
+          <h1>
+            <fa-icon [icon]="deleteIcon" *ngIf="wantToDelete" (click)="delete()"></fa-icon>
+          </h1>
+          <h1 class="worked-icon">
+            <fa-icon [icon]="workedIcon" *ngIf="getDeleteWorked()"></fa-icon>
+          </h1>
+        </div>
+      </li>
+    </ul>
   </section>
 </section>

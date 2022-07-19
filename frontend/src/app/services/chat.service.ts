@@ -17,13 +17,16 @@ export class ChatService {
   homeSelectedChatInd: number = 0;
   chatSelectedChatInd: number = 0;
   chatIsOpen: boolean = false;//todo has to be false
-  chatMenuIsOpen: boolean = true;//todo has to be false;
+  chatMenuIsOpen: boolean = false;//todo has to be false;
+  sosMenuIsOpen:boolean=false; //has to be false;
 
   chats: ChatMembers[] = [];
 
   chatMessages: Message[] = [];
   messagesAreLoaded: boolean = false;
   chatsAreLoaded: boolean = false;
+
+  deleteChatWorked:boolean=false;
 
   constructor(private apiService: ApiService, private peerMenteeService: PeerMenteeService, private navigationService: NavigationService, private router: Router) { }
 
@@ -83,23 +86,23 @@ export class ChatService {
   }
 
   loadMessages(userdata: Userdata): void {
-    let menteeNickname="";
-    let peerNickname="";
-    if(userdata.isMentee){
-      menteeNickname=userdata.nickname;
-      peerNickname= this.chats[this.chatSelectedChatInd].peerNickname;
-    }else{
-      menteeNickname= this.chats[this.chatSelectedChatInd].menteeNickname;
-      peerNickname=userdata.nickname;
+    let menteeNickname = "";
+    let peerNickname = "";
+    if (userdata.isMentee) {
+      menteeNickname = userdata.nickname;
+      peerNickname = this.chats[this.chatSelectedChatInd].peerNickname;
+    } else {
+      menteeNickname = this.chats[this.chatSelectedChatInd].menteeNickname;
+      peerNickname = userdata.nickname;
     }
-    this.apiService.loadMessages(menteeNickname,peerNickname, userdata.password, userdata.isMentee).subscribe((messages: Message[]) => {
+    this.apiService.loadMessages(menteeNickname, peerNickname, userdata.password, userdata.isMentee).subscribe((messages: Message[]) => {
       if (messages != undefined) {
         this.chatMessages = messages;
-        this.messagesAreLoaded=true;
+        this.messagesAreLoaded = true;
         //console.log(this.chatMessages);
       } else {
         this.chatMessages = [];
-        this.messagesAreLoaded=false;
+        this.messagesAreLoaded = false;
       }
     });
   }
@@ -107,17 +110,17 @@ export class ChatService {
   sendMessage(userdata: Userdata, message: string): void {
     console.log(this.chats[this.chatSelectedChatInd].peerNickname);
     //console.log(message);
-    let menteeNickname="";
-    let peerNickname="";
-    if(userdata.isMentee){
-      menteeNickname=userdata.nickname;
-      peerNickname= this.chats[this.chatSelectedChatInd].peerNickname;
-    }else{
-      menteeNickname= this.chats[this.chatSelectedChatInd].menteeNickname;
-      peerNickname=userdata.nickname;
+    let menteeNickname = "";
+    let peerNickname = "";
+    if (userdata.isMentee) {
+      menteeNickname = userdata.nickname;
+      peerNickname = this.chats[this.chatSelectedChatInd].peerNickname;
+    } else {
+      menteeNickname = this.chats[this.chatSelectedChatInd].menteeNickname;
+      peerNickname = userdata.nickname;
     }
 
-    this.apiService.sendMessage(menteeNickname,peerNickname, userdata.password, message, userdata.isMentee).subscribe((worked: boolean) => {
+    this.apiService.sendMessage(menteeNickname, peerNickname, userdata.password, message, userdata.isMentee).subscribe((worked: boolean) => {
       console.log(worked);
       if (worked) {
         let msg: Message = {
@@ -129,6 +132,18 @@ export class ChatService {
         }
         this.chatMessages.push(msg);
       }
+    });
+  }
+
+  deleteChat( userdata: Userdata): void {
+    let ind=this.chatSelectedChatInd;
+    this.apiService.deleteChat(this.chats[ind].menteeNickname, this.chats[ind].peerNickname).subscribe((worked: boolean) => {
+      console.log(worked);
+      this.deleteChatWorked=true;
+      setTimeout(()=>{
+        this.deleteChatWorked=false;
+      },2000);
+      this.loadChatPage(userdata.nickname, userdata.password, userdata.isMentee);
     });
   }
 

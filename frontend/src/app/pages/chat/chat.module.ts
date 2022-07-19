@@ -10,6 +10,7 @@ import { ChatPage } from './chat.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChatViewComponent } from './chat-view/chat-view.component';
 import { ChatMenuComponent } from './chat-menu/chat-menu.component';
+import { SosMenuComponent } from './sos-menu/sos-menu.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { ChatMenuComponent } from './chat-menu/chat-menu.component';
     ChatPage,
     ChatViewComponent,
     ChatMenuComponent,
+    SosMenuComponent,
   ]
 })
 export class ChatPageModule {}

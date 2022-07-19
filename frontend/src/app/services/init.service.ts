@@ -29,7 +29,7 @@ export class InitService {
   }
 
   isFirstTime: boolean = false;
-  homeIsLoaded: boolean = false; //has to be false
+  homeIsLoaded: boolean = true; //has to be false
   chatsAreLoaded:boolean=false;
   
   constructor(private storageService: StorageService, private apiService: ApiService, private chatService: ChatService,private newsService:NewsService, private peerMenteeService: PeerMenteeService, private router: Router) {
@@ -44,16 +44,16 @@ export class InitService {
     this.storageService.getData(1, "nickname").subscribe(nickname => {
       this.userdata.nickname = nickname == null || nickname == "" ? "" : nickname; //uncomment
       if (this.userdata.nickname.length == 0) {
-        this.isFirstTime = true; //todo uncomment
-        this.router.navigate(["./First-time"]); //todo uncomment
+       // this.isFirstTime = true; //todo uncomment
+        //this.router.navigate(["./First-time"]); //todo uncomment
       } else {
         this.storageService.getData(1, "password").subscribe(password => {
           this.userdata.password = password == null || password == "" ? "" : password; //uncomment
           if (this.userdata.password.length != 0) {
             this.loadUserdata();
           } else {
-            this.isFirstTime = true;//tod uncomment
-            this.router.navigate(["./First-time"]); //todo uncomment
+           // this.isFirstTime = true;//tod uncomment
+            //this.router.navigate(["./First-time"]); //todo uncomment
           }
         });
       }

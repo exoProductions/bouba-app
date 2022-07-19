@@ -1,0 +1,31 @@
+<section id="chat-section">
+  <section id="content">
+    <button class="close-btn" (click)="close()">
+      <h1>
+        <fa-icon [icon]="closeIcon"></fa-icon>
+      </h1>
+    </button>
+    <ul class="content-list">
+      <li>
+        <h1 class="title-second">You clicked the SOS button<br><br>
+          Please choose the answer that matches the problem best
+        </h1>
+        <ul class="problem-list">
+          <ng-container *ngFor="let  problem of problems;let i = index">
+            <li [ngClass]="selectedProblemInd==i? 'problem-item selected':'problem-item'"
+              (click)="selectedProblemInd=i">
+              <div class="radio-btn"></div>
+              <span> {{problem}}
+              </span>
+            </li>
+          </ng-container>
+        </ul>
+      </li>
+      <li class="button-container">
+        <button class="round-button">
+          <h2>Report</h2>
+        </button>
+      </li>
+    </ul>
+  </section>
+</section>
